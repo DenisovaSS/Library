@@ -1,0 +1,553 @@
+/* font-family: 'Forum', cursive; */
+/* font-family: 'Inter', sans-serif; */
+:root {
+  --primary-color: #bb945f;
+  --dark-color: #0c0c0e;
+  --gray-color: #8e8e8e;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html {
+  scroll-behavior: smooth;
+}
+header {
+  padding: 20px 20px;
+  height: 90px;
+  background: var(--dark-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.humburger {
+  display: none;
+}
+h1 {
+  color: #fff;
+  font-family: Forum;
+  font-size: 30px;
+  font-weight: 400;
+  letter-spacing: 0.6px;
+}
+.menu {
+  display: flex;
+  gap: 30px;
+  justify-content: flex-start;
+}
+a:hover {
+  text-decoration: underline;
+  color: var(--primary-color);
+}
+.menu_link {
+  color: rgb(255, 255, 255);
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: 400;
+  text-decoration: none;
+  transition: all 100ms ease-in-out;
+}
+.menu_link:hover {
+  text-decoration: underline;
+  color: var(--primary-color);
+}
+.menu_img {
+  margin-left: 40px;
+  width: 28px;
+  height: 28px;
+}
+.wrapper-menu {
+  display: flex;
+}
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+.welcome {
+  padding-top: 220px;
+  min-height: 600px;
+  background: url(../pictures/Welcome.jpg) center center/cover;
+}
+.welcome_text {
+  width: 600px;
+  background: var(--dark-color);
+  padding: 35px 40px;
+  color: rgb(255, 255, 255);
+  font-family: Forum;
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 50px;
+  letter-spacing: 3px;
+  text-align: center;
+  text-transform: uppercase;
+}
+.about {
+  min-height: 837px;
+  padding: 20px 20px 40px 20px;
+}
+.title {
+  color: var(--dark-color);
+  font-family: Forum;
+  font-size: 40px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-align: center;
+}
+.title_line {
+  margin: 20px auto;
+  width: 50px;
+  height: 1px;
+  background-color: var(--dark-color);
+}
+.subtitle {
+  margin-top: 20px;
+  color: rgb(0, 0, 0);
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: 400;
+  text-align: center;
+}
+.about_slider_wrapper {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  gap: 25px;
+}
+.about_img {
+  width: 450px;
+  height: 560px;
+}
+.wrapper_circle {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+}
+.about_wrapper_circle {
+  width: 26px;
+  height: 26px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.about_wrapper_circle:hover {
+  cursor: pointer;
+}
+.about_circle {
+  width: 16px;
+  height: 16px;
+  background: var(--dark-color);
+  border-radius: 100%;
+}
+.favorites {
+  padding: 0 20px 0 20px;
+  min-height: 1439px;
+  background: rgb(255, 255, 255);
+}
+.subtitle_favorites {
+  margin-top: 40px;
+  color: rgb(0, 0, 0);
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: 700;
+}
+.wrapper_favorites_book_season {
+  margin-top: 40px;
+}
+.wrapper_favorites_book_season label {
+  color: rgb(0, 0, 0);
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: 400;
+}
+span label {
+  margin-left: 90px;
+}
+.section_favorites_book_shelf {
+  padding-right: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.book_shelf_wrapper {
+  margin-top: 40px;
+  padding: 15px 20px;
+  width: 550px;
+  height: 555px;
+  background: rgb(255, 255, 255);
+  border: 1px solid rgb(0, 0, 0);
+  position: relative;
+}
+.book_shelf_title {
+  color: rgb(0, 0, 0);
+  font-family: Forum;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 2px;
+}
+.book_shelf_title_line {
+  margin-top: 15px;
+  width: 60px;
+  height: 0;
+  border: 1px solid rgb(187, 148, 95);
+}
+.name_book {
+  margin-top: 20px;
+  color: rgb(0, 0, 0);
+  font-family: Inter;
+  font-size: 15px;
+  font-weight: 700;
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+.autor_book {
+  text-transform: none;
+}
+.description_book {
+  margin-top: 20px;
+  width: 355px;
+  color: rgb(0, 0, 0);
+  font-family: Inter;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 40px;
+  letter-spacing: 2px;
+  text-align: left;
+  text-transform: capitalize;
+}
+.book_shelf_btn {
+  width: 75px;
+  height: 30px;
+  position: absolute;
+  left: 20px;
+  bottom: 15px;
+  color: var(--dark-color);
+  font-family: Inter;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border-radius: 2px;
+  transition: all 200ms ease-in-out;
+}
+.book_shelf_btn:hover {
+  border-radius: 2px;
+  border: 1px solid #bb945f;
+  background: #bb945f;
+  cursor: pointer;
+}
+button disabled,
+button[disabled] {
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  width: 75px;
+  height: 30px;
+  position: absolute;
+  left: 20px;
+  bottom: 15px;
+}
+.book_img {
+  position: absolute;
+  width: 200px;
+  height: 300px;
+  right: -40px;
+  bottom: -1px;
+}
+.seasons {
+  display: none;
+}
+.coffeShop {
+  padding: 0 20px;
+  min-height: 841px;
+}
+.coffeShop_subtitle {
+  margin-top: 40px;
+  color: rgb(0, 0, 0);
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 40px;
+  letter-spacing: 2px;
+  text-align: center;
+}
+.coffeShop_menu {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+.coffeShop_menu_title {
+  color: var(--primary-color);
+  font-family: Forum;
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 40px;
+  letter-spacing: 2px;
+  text-align: left;
+  text-transform: capitalize;
+}
+.coffeShop_menu_title_dessert {
+  text-align: right;
+}
+.menu_line {
+  margin-top: 40px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.menu_dish {
+  color: rgb(0, 0, 0);
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 40px;
+  letter-spacing: 2px;
+  text-transform: capitalize;
+  float: left;
+}
+.menu_hyphen {
+  margin-left: 60px;
+  margin-right: 60px;
+  width: 100px;
+  height: 0;
+  border: 1px solid rgb(187, 148, 95);
+}
+.menu_price {
+  color: rgb(0, 0, 0);
+  font-family: Forum;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 40px;
+  letter-spacing: 2px;
+}
+.contacts {
+  padding: 0 20px;
+  margin-top: 60px;
+  min-height: 575px;
+}
+.contact_wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+.contact_card_item {
+  margin-top: 20px;
+  color: rgb(0, 0, 0);
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 40px;
+  letter-spacing: 2px;
+  text-transform: capitalize;
+}
+.contact_card_item a {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+}
+.contact_card_item_title {
+  margin-top: 40px;
+  font-weight: 700;
+}
+.contact_map {
+  margin-top: 40px;
+  width: 696px;
+  height: 414px;
+}
+.libraryCard {
+  padding: 0 20px;
+  margin-top: 60px;
+  min-height: 614px;
+}
+.libraryCard_wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+.library_member_card_section {
+  margin-top: 40px;
+}
+.library_member_card_section_title {
+  color: rgb(0, 0, 0);
+  font-family: Inter;
+  font-size: 30px;
+  font-weight: 400;
+  letter-spacing: 0.019999999552965164%;
+  text-align: center;
+}
+.member_card_wrapper {
+  margin-top: 30px;
+  width: 600px;
+  height: 386px;
+  background: rgb(255, 255, 255);
+  border: 3px solid rgb(187, 148, 95);
+}
+.member_card {
+  padding: 20px;
+  margin: 20px;
+  width: 560px;
+  height: 272px;
+  background: rgb(187, 148, 95);
+}
+.member_card_title {
+  color: rgb(0, 0, 0);
+  font-family: Forum;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 50px;
+  letter-spacing: 0.019999999552965164%;
+  text-align: left;
+}
+.member_card_search {
+  margin-top: 22px;
+  width: 520px;
+  height: 66px;
+  background: rgb(255, 255, 255);
+  border-radius: 10px;
+  border: none;
+}
+.member_card_search::placeholder {
+  padding: 8px 0 8px 20px;
+  color: var(--gray-color);
+  font-family: Forum;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 50px;
+  letter-spacing: 0.019999999552965164%;
+  text-align: left;
+}
+.member_card_btn {
+  display: block;
+  margin: 20px auto 30px auto;
+  width: 242px;
+  height: 44px;
+  border: 1px solid var(--dark-color);
+  color: var(--dark-color);
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-align: center;
+  border-radius: 2px;
+  transition: all 200ms ease-in-out;
+}
+.member_card_btn:hover {
+  border-radius: 2px;
+  border: 1px solid #bb945f;
+  background: #bb945f;
+  cursor: pointer;
+}
+.library_register_card {
+  margin-top: 40px;
+  width: 456px;
+  height: 253px;
+}
+.library_register_card_title {
+  color: rgb(0, 0, 0);
+  font-family: Forum;
+  font-size: 30px;
+  font-weight: 400;
+  letter-spacing: 0.019999999552965164%;
+  text-align: right;
+}
+.library_register_card_recommend {
+  margin-top: 35px;
+  color: rgb(0, 0, 0);
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 40px;
+  letter-spacing: 0.019999999552965164%;
+  text-align: right;
+}
+.library_register_card_btn {
+  margin: 35px 0 0 20px;
+  width: 75px;
+  height: 30px;
+  border: 1px solid var(--dark-color);
+  border-radius: 2px;
+  color: var(--dark-color);
+  font-family: Inter;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-align: center;
+  float: right;
+  transition: all 200ms ease-in-out;
+}
+.library_register_card_btn:hover {
+  border-radius: 2px;
+  border: 1px solid #bb945f;
+  background: #bb945f;
+  cursor: pointer;
+}
+footer {
+  padding: 20px 20px 44px 20px;
+  min-height: 250px;
+  margin-top: 41px;
+  background: var(--dark-color);
+}
+.contact_info {
+  display: flex;
+  justify-content: space-between;
+}
+.contact_info_adress_link {
+  color: rgb(255, 255, 255);
+  font-family: Inter;
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0%;
+  text-align: left;
+  text-decoration: none;
+  transition: all 200ms ease-in-out;
+}
+.contact_info_adress_link:hover {
+  color: var(--primary-color);
+  cursor: pointer;
+}
+.info_social {
+  margin-top: 10px;
+  display: flex;
+  gap: 18px;
+}
+.timetable_item {
+  color: rgb(255, 255, 255);
+  font-family: Inter;
+  font-size: 15px;
+  font-weight: 400;
+  text-align: right;
+}
+.timetable_item_weekend {
+  margin-top: 10px;
+}
+.contact_info_line {
+  margin-top: 30px;
+  border: 1px solid rgb(255, 255, 255);
+}
+.real_footer {
+  margin-top: 44.5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.real_footer_year {
+  color: #fff;
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 2px;
+}
+.real_footer_rss {
+  color: rgb(255, 255, 255);
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-decoration: none;
+}
+.real_footer_github {
+  color: rgb(255, 255, 255);
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-decoration: none;
+}
