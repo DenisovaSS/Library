@@ -121,7 +121,7 @@ a:hover {
   height: 560px;
 }
 .wrapper_circle {
-  margin-top: 40px;
+  margin-top: 30px;
   display: flex;
   justify-content: center;
 }
@@ -172,7 +172,8 @@ span label {
   justify-content: space-between;
 }
 .book_shelf_wrapper {
-  margin-top: 40px;
+  margin-top: 35px;
+  margin-bottom: 5px;
   padding: 15px 20px;
   width: 550px;
   height: 555px;
@@ -194,7 +195,7 @@ span label {
   border: 1px solid rgb(187, 148, 95);
 }
 .name_book {
-  margin-top: 20px;
+  margin-top: 15px;
   color: rgb(0, 0, 0);
   font-family: Inter;
   font-size: 15px;
@@ -209,7 +210,7 @@ span label {
   text-transform: none;
 }
 .description_book {
-  margin-top: 20px;
+  margin-top: 21px;
   width: 355px;
   color: rgb(0, 0, 0);
   font-family: Inter;
@@ -261,7 +262,7 @@ button[disabled] {
   display: none;
 }
 .coffeShop {
-  margin-top: 58px;
+  margin-top: 54px;
   padding: 0 20px;
 }
 .coffeShop_subtitle {
@@ -329,7 +330,7 @@ button[disabled] {
 }
 .contacts {
   padding: 0 20px;
-  margin-top: 60px;
+  margin-top: 55px;
 }
 .contact_wrapper {
   display: flex;
@@ -349,25 +350,32 @@ button[disabled] {
   text-decoration: none;
   color: rgb(0, 0, 0);
 }
+
 .contact_card_item_title {
   margin-top: 20px;
+  margin-bottom: 40px;
+  font-weight: 700;
+}
+.contact_card_item_title2 {
+  margin-top: 40px;
+  margin-bottom: 20px;
   font-weight: 700;
 }
 .contact_map {
-  margin-top: 40px;
+  margin-top: 20px;
   width: 696px;
   height: 414px;
 }
 .libraryCard {
   padding: 0 20px;
-  margin-top: 60px;
+  margin-top: 55px;
 }
 .libraryCard_wrapper {
   display: flex;
   justify-content: space-between;
 }
 .library_member_card_section {
-  margin-top: 40px;
+  margin-top: 20px;
 }
 .library_member_card_section_title {
   color: rgb(0, 0, 0);
@@ -440,7 +448,7 @@ button[disabled] {
   cursor: pointer;
 }
 .library_register_card {
-  margin-top: 40px;
+  margin-top: 20px;
   width: 456px;
   height: 253px;
 }
