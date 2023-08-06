@@ -120,12 +120,17 @@ a:hover {
   margin-top: 20px;
   display: flex;
   justify-content: center;
+  align-items: center;
   overflow: hidden;
   gap: 25px;
 }
 .about_img {
   width: 450px;
   height: 560px;
+}
+.about_slider_arrow_prev,
+.about_slider_arrow_next {
+  display: none;
 }
 .wrapper_circle {
   margin-top: 30px;
@@ -139,6 +144,10 @@ a:hover {
   justify-content: center;
   align-items: center;
 }
+
+.about_circle_tablet {
+  display: none;
+}
 .about_wrapper_circle:hover {
   cursor: pointer;
 }
@@ -147,6 +156,10 @@ a:hover {
   height: 16px;
   background: var(--dark-color);
   border-radius: 100%;
+  border: none;
+}
+.about_circle_first {
+  background-color: var(--primary-color);
 }
 .favorites {
   padding: 0 20px 0 20px;
@@ -666,6 +679,8 @@ footer {
   .contact_map {
     margin: 100px auto 0;
     display: block;
+    width: 100%;
+    height: auto;
   }
   .libraryCard_wrapper {
     display: block;
@@ -687,5 +702,37 @@ footer {
   .register_card_wrapper_btn {
     display: flex;
     justify-content: center;
+  }
+}
+@media (max-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+  .about_img {
+    display: none;
+  }
+  .about_img_first {
+    display: block;
+  }
+  .about_slider_arrow_prev,
+  .about_slider_arrow_next {
+    display: block;
+    width: 24px;
+    height: 24px;
+    background-color: #fff;
+    border: none;
+  }
+  .about_circle_tablet {
+    display: block;
+  }
+  .coffeShop {
+    padding: 0 18px;
+  }
+  .contact_map {
+    width: 696px;
+    height: 414px;
+  }
+  .library_member_card_section {
+    margin-top: 40px;
   }
 }
