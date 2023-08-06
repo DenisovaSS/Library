@@ -598,11 +598,12 @@ footer {
   }
 
   .nav {
-    position: absolute;
-    background: #f2785c;
+    position: fixed;
+    background: #000;
     width: 332px;
     top: 0;
     right: -100%;
+    transition: right 0.5s ease 0s;
   }
   .nav_active {
     right: 0;
@@ -653,7 +654,38 @@ footer {
   .coffeShop_menu {
     display: block;
   }
+  .coffeShop_menu_dessert {
+    margin-top: 40px;
+  }
   .coffeShop_menu_drink .menu_line {
     justify-content: flex-start;
+  }
+  .contact_wrapper {
+    display: block;
+  }
+  .contact_map {
+    margin: 100px auto 0;
+    display: block;
+  }
+  .libraryCard_wrapper {
+    display: block;
+  }
+  .member_card_wrapper {
+    margin: 30px auto 0;
+  }
+  .library_register_card {
+    width: auto;
+  }
+  .library_register_card_title {
+    text-align: center;
+  }
+  .library_register_card_recommend {
+    width: 600px;
+    margin: 35px auto 0;
+    text-align: center;
+  }
+  .register_card_wrapper_btn {
+    display: flex;
+    justify-content: center;
   }
 }

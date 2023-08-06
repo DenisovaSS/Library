@@ -13,14 +13,14 @@ document.addEventListener("DOMContentLoaded", () => {
     hamburger.classList.remove("humburger_active");
     nav.classList.remove("nav_active");
   });
-  /*  remove active if press to avoid nav
-  document.addEventListener("click", avoidMenu);
-  function avoidMenu(event) {
-    if (!event.target.closest(".nav")) {
-      hamburger.classList.remove("humburger_active");
-      nav.classList.remove("nav_active");
-    }
-  } */
+  //  remove active if press to avoid nav
+  // document.addEventListener("click", avoidMenu);
+  // function avoidMenu(event) {
+  //   if (!event.composedPath().includes(nav)) {
+  //     hamburger.classList.remove("humburger_active");
+  //     nav.classList.remove("nav_active");
+  //   }
+  // }
   //for menu item
   menuItem.forEach((item) => {
     item.addEventListener("click", () => {
