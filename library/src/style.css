@@ -701,10 +701,14 @@ footer {
   }
   .register_card_wrapper_btn {
     display: flex;
+    flex-direction: row-reverse;
     justify-content: center;
   }
 }
 @media (max-width: 768px) {
+  .welcome {
+    background: url(../pictures/Welcome.jpeg) center center/cover;
+  }
   .container {
     max-width: 768px;
   }
@@ -713,10 +717,12 @@ footer {
   }
   .about_img_first {
     display: block;
+    margin: 0 31px 0 31px;
   }
   .about_slider_arrow_prev,
   .about_slider_arrow_next {
     display: block;
+    margin-top: 36px;
     width: 24px;
     height: 24px;
     background-color: #fff;
@@ -734,5 +740,82 @@ footer {
   }
   .library_member_card_section {
     margin-top: 40px;
+  }
+  footer {
+    padding: 21px 18px 44px 20px;
+    margin-top: 11px;
+    background: var(--dark-color);
+  }
+  .timetable_item_weekend {
+    margin-top: 11px;
+  }
+  .info_social {
+    gap: 16px;
+  }
+  .title_line {
+    margin: 18px auto;
+  }
+  .wrapper_circle {
+    margin-top: 20px;
+  }
+  .favorites {
+    margin-top: 13px;
+  }
+  .name_book {
+    margin-top: 17px;
+  }
+  .autor_book {
+    margin-top: 1px;
+  }
+  .contact_card_item_title {
+    margin-top: 40px;
+  }
+  .libraryCard {
+    margin-top: 60px;
+  }
+  .library_register_card_recommend {
+    margin: 43px auto 0;
+  }
+  .library_register_card_btn {
+    margin: 38px 0 0 10px;
+  }
+}
+@media (max-width: 750px) {
+  .container {
+    max-width: 750px;
+  }
+  .wrapper_favorites_book_season label {
+    font-size: 13px;
+  }
+  .contact_map {
+    width: 100%;
+    height: auto;
+  }
+  @media (max-width: 620px) {
+    .welcome_text {
+      width: 70%;
+      font-size: 30px;
+    }
+    .member_card_wrapper {
+      width: 100%;
+      height: auto;
+    }
+    .member_card {
+      width: 94%;
+      height: auto;
+    }
+    .member_card_search {
+      width: 90%;
+      height: 50px;
+    }
+    .member_card_search::placeholder {
+      font-size: 20px;
+    }
+    .library_register_card_recommend {
+      width: 100%;
+    }
+    span label {
+      margin-left: 50px;
+    }
   }
 }
