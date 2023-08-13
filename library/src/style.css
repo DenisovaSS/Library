@@ -612,12 +612,28 @@ footer {
 
   .nav {
     position: fixed;
-    background: #000;
+    background: var(--dark-color);
     width: 332px;
     top: 0;
     right: -100%;
     transition: right 0.5s ease 0s;
+    z-index: 3;
   }
+  .overNav {
+    display: none;
+    position: fixed;
+    background: #8e8e8e;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    opacity: 0.1;
+  }
+  .overNav_active {
+    display: block;
+  }
+
   .nav_active {
     right: 0;
   }
@@ -626,7 +642,7 @@ footer {
     position: absolute;
     display: flex;
     justify-content: flex-end;
-    top: 25px;
+    top: 32px;
     right: 25px;
   }
 
@@ -637,7 +653,7 @@ footer {
     height: 32px;
   }
   .humburger_item .menu_img {
-    margin-right: 40px;
+    margin-right: 37px;
   }
   .menu_cross span {
     margin-bottom: -1px;
@@ -653,7 +669,7 @@ footer {
     transform: translateY(2px) rotate(45deg);
   }
   .menu {
-    padding: 100px;
+    padding: 94px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -686,7 +702,7 @@ footer {
     display: block;
   }
   .member_card_wrapper {
-    margin: 30px auto 0;
+    margin: 27px auto 0;
   }
   .library_register_card {
     width: auto;
@@ -719,6 +735,9 @@ footer {
     display: block;
     margin: 0 31px 0 31px;
   }
+  span label {
+    margin-left: 100px;
+  }
   .about_slider_arrow_prev,
   .about_slider_arrow_next {
     display: block;
@@ -734,6 +753,9 @@ footer {
   .coffeShop {
     padding: 0 18px;
   }
+  .contacts {
+    margin-top: 59px;
+  }
   .contact_map {
     width: 696px;
     height: 414px;
@@ -742,7 +764,7 @@ footer {
     margin-top: 40px;
   }
   footer {
-    padding: 21px 18px 44px 20px;
+    padding: 23px 20px 45px 19px;
     margin-top: 11px;
     background: var(--dark-color);
   }
