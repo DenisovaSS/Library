@@ -35,10 +35,17 @@ h1 {
   display: flex;
   gap: 30px;
   justify-content: flex-start;
+  margin-top: 7px;
+}
+.humburger_item {
+  display: none;
 }
 a:hover {
   text-decoration: underline;
   color: var(--primary-color);
+}
+.menu_item {
+  list-style-type: none;
 }
 .menu_link {
   color: rgb(255, 255, 255);
@@ -113,12 +120,17 @@ a:hover {
   margin-top: 20px;
   display: flex;
   justify-content: center;
+  align-items: center;
   overflow: hidden;
   gap: 25px;
 }
 .about_img {
   width: 450px;
   height: 560px;
+}
+.about_slider_arrow_prev,
+.about_slider_arrow_next {
+  display: none;
 }
 .wrapper_circle {
   margin-top: 30px;
@@ -132,6 +144,10 @@ a:hover {
   justify-content: center;
   align-items: center;
 }
+
+.about_circle_tablet {
+  display: none;
+}
 .about_wrapper_circle:hover {
   cursor: pointer;
 }
@@ -140,6 +156,10 @@ a:hover {
   height: 16px;
   background: var(--dark-color);
   border-radius: 100%;
+  border: none;
+}
+.about_circle_first {
+  background-color: var(--primary-color);
 }
 .favorites {
   padding: 0 20px 0 20px;
@@ -562,4 +582,262 @@ footer {
   font-weight: 400;
   letter-spacing: 2px;
   text-decoration: none;
+}
+@media (max-width: 1024px) {
+  .container {
+    max-width: 1024px;
+  }
+  .menu_img {
+    margin-right: 85px;
+  }
+
+  .humburger {
+    display: block;
+    position: absolute;
+    top: 35px;
+    right: 20px;
+    width: 45px;
+    height: 22px;
+  }
+  .humburger_active {
+    display: none;
+  }
+  .humburger span {
+    display: block;
+    width: 45px;
+    height: 2px;
+    margin-bottom: 6px;
+    background-color: rgba(255, 255, 255, 1);
+  }
+
+  .nav {
+    position: fixed;
+    background: var(--dark-color);
+    width: 332px;
+    top: 0;
+    right: -100%;
+    transition: right 0.5s ease 0s;
+    z-index: 3;
+  }
+  .overNav {
+    display: none;
+    position: fixed;
+    background: #8e8e8e;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    opacity: 0.1;
+  }
+  .overNav_active {
+    display: block;
+  }
+
+  .nav_active {
+    right: 0;
+  }
+  .humburger_item {
+    display: block;
+    position: absolute;
+    display: flex;
+    justify-content: flex-end;
+    top: 32px;
+    right: 25px;
+  }
+
+  .menu_cross {
+    margin-top: 10px;
+    display: block;
+    width: 32px;
+    height: 32px;
+  }
+  .humburger_item .menu_img {
+    margin-right: 37px;
+  }
+  .menu_cross span {
+    margin-bottom: -1px;
+    display: block;
+    width: 45px;
+    height: 2px;
+    background-color: rgba(255, 255, 255, 1);
+  }
+  .menu_cross span:nth-child(1) {
+    transform: translateY(3px) rotate(-45deg);
+  }
+  .menu_cross span:nth-child(2) {
+    transform: translateY(2px) rotate(45deg);
+  }
+  .menu {
+    padding: 94px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .menu_link {
+    line-height: 50px;
+  }
+  .section_favorites_book_shelf {
+    justify-content: center;
+  }
+  .coffeShop_menu {
+    display: block;
+  }
+  .coffeShop_menu_dessert {
+    margin-top: 40px;
+  }
+  .coffeShop_menu_drink .menu_line {
+    justify-content: flex-start;
+  }
+  .contact_wrapper {
+    display: block;
+  }
+  .contact_map {
+    margin: 100px auto 0;
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .libraryCard_wrapper {
+    display: block;
+  }
+  .member_card_wrapper {
+    margin: 27px auto 0;
+  }
+  .library_register_card {
+    width: auto;
+  }
+  .library_register_card_title {
+    text-align: center;
+  }
+  .library_register_card_recommend {
+    width: 600px;
+    margin: 35px auto 0;
+    text-align: center;
+  }
+  .register_card_wrapper_btn {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+  }
+}
+@media (max-width: 768px) {
+  .welcome {
+    background: url(../pictures/Welcome.jpeg) center center/cover;
+  }
+  .container {
+    max-width: 768px;
+  }
+  .about_img {
+    display: none;
+  }
+  .about_img_first {
+    display: block;
+    margin: 0 31px 0 31px;
+  }
+  span label {
+    margin-left: 100px;
+  }
+  .about_slider_arrow_prev,
+  .about_slider_arrow_next {
+    display: block;
+    margin-top: 36px;
+    width: 24px;
+    height: 24px;
+    background-color: #fff;
+    border: none;
+  }
+  .about_circle_tablet {
+    display: block;
+  }
+  .coffeShop {
+    padding: 0 18px;
+  }
+  .contacts {
+    margin-top: 59px;
+  }
+  .contact_map {
+    width: 696px;
+    height: 414px;
+  }
+  .library_member_card_section {
+    margin-top: 40px;
+  }
+  footer {
+    padding: 23px 20px 45px 19px;
+    margin-top: 11px;
+    background: var(--dark-color);
+  }
+  .timetable_item_weekend {
+    margin-top: 11px;
+  }
+  .info_social {
+    gap: 16px;
+  }
+  .title_line {
+    margin: 18px auto;
+  }
+  .wrapper_circle {
+    margin-top: 20px;
+  }
+  .favorites {
+    margin-top: 13px;
+  }
+  .name_book {
+    margin-top: 17px;
+  }
+  .autor_book {
+    margin-top: 1px;
+  }
+  .contact_card_item_title {
+    margin-top: 40px;
+  }
+  .libraryCard {
+    margin-top: 60px;
+  }
+  .library_register_card_recommend {
+    margin: 43px auto 0;
+  }
+  .library_register_card_btn {
+    margin: 38px 0 0 10px;
+  }
+}
+@media (max-width: 750px) {
+  .container {
+    max-width: 750px;
+  }
+  .wrapper_favorites_book_season label {
+    font-size: 13px;
+  }
+  .contact_map {
+    width: 100%;
+    height: auto;
+  }
+  @media (max-width: 620px) {
+    .welcome_text {
+      width: 70%;
+      font-size: 30px;
+    }
+    .member_card_wrapper {
+      width: 100%;
+      height: auto;
+    }
+    .member_card {
+      width: 94%;
+      height: auto;
+    }
+    .member_card_search {
+      width: 90%;
+      height: 50px;
+    }
+    .member_card_search::placeholder {
+      font-size: 20px;
+    }
+    .library_register_card_recommend {
+      width: 100%;
+    }
+    span label {
+      margin-left: 50px;
+    }
+  }
 }

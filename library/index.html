@@ -14,28 +14,32 @@
 <body>
 <div class="container">
   <header>
-      <h1>Brooklyn Public Library</h1>
-      <div class="humburger">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
+      <h1>Brooklyn Public Library</h1>     
       <div class="wrapper-menu">
-        <nav> 
-            <div class="menu_cross">
+        <div class="overNav"></div>
+        <nav class="nav">           
+          <ul class="menu">
+            <li class="humburger_item">
+              <a class="menu_logo"><img class="menu_img" src="pictures/icon_profile.svg" alt="logo"></a>
+              <div class="menu_cross">
               <span></span>
               <span></span>
             </div>
-          <ul class="menu">           
+          </li>            
             <li class="menu_item"><a href="#about_lib" class="menu_link">About</a></li>
             <li class="menu_item"><a href="#fav_book" class="menu_link">Favorites</a></li>
             <li class="menu_item"><a href="#coffe" class="menu_link">Coffee shop</a></li>
             <li class="menu_item"><a href="#contact" class="menu_link">Contacts</a></li>
             <li class="menu_item"><a href="#card" class="menu_link">Library Card</a></li>
-          </ul>
-        </nav>
+          </ul>         
+        </nav>     
         <a class="menu_logo"><img class="menu_img" src="pictures/icon_profile.svg" alt="logo"></a>
               <!-- <button class="menu_btn">Login</button> -->
+      </div>
+      <div class="humburger">
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
   </header>
   <main>
@@ -47,17 +51,25 @@
       <div class="title_line"></div>
       <div class="subtitle">The Brooklyn Library is a free workspace, a large number of books and a cozy coffee shop inside</div>
       <div class="about_slider_wrapper">
-        <img class="about_img" src="pictures/slider/Slide1.jpeg" alt="women in library">
+        <button class="about_slider_arrow_prev"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+          <path d="M15 7.5L9 12.5L15 17.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" />
+        </svg></button>
+        <img class="about_img about_img_first" src="pictures/slider/Slide1.jpeg" alt="women in library">
         <img class="about_img" src="pictures/slider/Slide2.jpeg" alt="statues">
         <img class="about_img" src="pictures/slider/Slide3.jpeg" alt="shelfs with books">
         <img class="about_img" src="pictures/slider/Slide4.jpeg" alt="ladder with books">
         <img class="about_img" src="pictures/slider/Slide5.jpeg" alt="columns">
+      <button class="about_slider_arrow_next"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+        <path d="M9 17.5L15 12.5L9 7.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" />
+      </svg></button>
       </div>
       <div class="wrapper_circle">
+        <div class="about_wrapper_circle"><button class="about_circle about_circle_first"></button></div>
         <div class="about_wrapper_circle"><button class="about_circle"></button></div>
         <div class="about_wrapper_circle"><button class="about_circle"></button></div>
-        <div class="about_wrapper_circle"><button class="about_circle"></button></div>
-      </div>      
+        <div class="about_wrapper_circle"><button class="about_circle about_circle_tablet"></button></div>
+        <div class="about_wrapper_circle"><button class="about_circle about_circle_tablet"></button></div>
+      </div>
       </section>
     <section class="favorites" id="fav_book">
           <h2 class="title">Favorites</h2>
@@ -254,7 +266,7 @@
         <h2 class="title">Coffee Shop</h2>
         <div class="title_line"></div>
         <p class="coffeShop_subtitle">In our library, we have of cozy coffee shop, welcoming in customers with frothy cappuccinos and friendly conversation.
-        you can get a favorite book and read in coffee shop. Our barista to cook you best coffee, and also you can try desserts
+        You can get a favorite book and read in coffee shop. Our barista to cook you best coffee, and also you can try desserts
         from bakery.</p>
         <div class="coffeShop_menu">
           <div class="coffeShop_menu_drink">
@@ -360,9 +372,10 @@
           <div class="library_register_card">
             <div class="library_register_card_title">Get a reader card</div>
             <p class="library_register_card_recommend">You will be able to see a reader card after logging into account or you can register a new account</p>
-            <button class="library_register_card_btn">Log in</button>
-            <button class="library_register_card_btn">Sign Up</button>
-            
+            <div class="register_card_wrapper_btn">
+              <button class="library_register_card_btn">Log in</button>
+              <button class="library_register_card_btn">Sign Up</button>
+            </div>
           </div>
         </div>      
       </section>
