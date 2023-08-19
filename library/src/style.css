@@ -198,11 +198,18 @@ a:hover {
 input[type="radio"] {
   accent-color: black;
 }
+.wrapper_favorites_book_season label:has(:checked) {
+  font-weight: 700;
+}
 span label {
   margin-left: 105px;
 }
 .section_favorites_book_shelf {
   display: none;
+  animation: fade-out 4s 2s ease-out forwards;
+}
+.grow {
+  animation: fade-out 4s 2s ease-out forwards;
 }
 .section_favorites_book_shelf_checked {
   display: block;
@@ -211,7 +218,7 @@ span label {
   flex-wrap: wrap;
   justify-content: space-between;
   opacity: 0;
-  animation: fade-in 2s ease-in forwards, fade-out 4s 2s ease-out forwards;
+  animation: fade-in 1s ease-in forwards;
 }
 
 @keyframes fade-in {
@@ -782,6 +789,13 @@ footer {
 
   .about_circle_tablet {
     display: block;
+  }
+  .wrapper_favorites_book_season {
+    position: sticky;
+
+    background-color: white;
+    top: -1px;
+    z-index: 2;
   }
   .coffeShop {
     padding: 0 18px;

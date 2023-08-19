@@ -58,19 +58,10 @@ document.querySelector(".about_slider_arrow_prev").onclick = function () {
   list.style.marginLeft = position + "px";
 };
 //3.Part for favorites_book_shelf
+
 const radioButtons = document.querySelectorAll('input[name="book-type"]');
 const boxes = document.querySelectorAll(".section_favorites_book_shelf");
-console.log(boxes);
-// for (const radioButton of radioButtons) {
-//   radioButton.addEventListener("change", changeBookShelf);
-// }
 
-// function changeBookShelf(e) {
-//   console.log(e);
-//   if (this.checked) {
-//     document.querySelector("#hello").innerText = `You selected ${this.id}`;
-//   }
-// }
 for (let i = 0; i < radioButtons.length; i++) {
   if (radioButtons[i].checked) {
     boxes[i].classList.add("section_favorites_book_shelf_checked");
