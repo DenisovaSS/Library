@@ -29,21 +29,38 @@ const carousel = document.querySelector(".about_slider_section"),
   listElems = carousel.querySelectorAll(".about_img"),
   allBtn = document.querySelectorAll(".about_wrapper_circle"),
   circles = document.querySelectorAll(".about_circle");
+let dotIndex = 0;
 let width = 479; // width picture + margin
 let position = 0; // position ленты прокрутки
+//for count slides
+const thisSlide = (index) => {
+  for (let circle of circles) {
+    circle.classList.remove("about_circle_active");
+  }
+  if (index === 0) {
+    document.querySelector(".about_slider_arrow_prev").style.backgroundColor =
+      "var(--primary-color)";
+  } else {
+    document.querySelector(".about_slider_arrow_prev").style.backgroundColor =
+      "";
+  }
+  if (index === listElems.length - 1) {
+    document.querySelector(".about_slider_arrow_next").style.backgroundColor =
+      "var(--primary-color)";
+  } else {
+    document.querySelector(".about_slider_arrow_next").style.backgroundColor =
+      "";
+  }
+  circles[index].classList.add("about_circle_active");
+};
 
-// circles.forEach((item) => {
-//   item.onclick = function () {
-//     item.classList.remove("about_circle_active");
-//   };
-// });
 //if use under buttons
 for (let i = 0; i < allBtn.length; i++) {
   allBtn[i].onclick = function () {
     position = -i * width;
-    //console.log(position);
-    circles[i].classList.toggle("about_circle_active");
     list.style.marginLeft = position + "px";
+    dotIndex = i;
+    thisSlide(dotIndex);
   };
 }
 //if use arrows
@@ -51,14 +68,21 @@ document.querySelector(".about_slider_arrow_next").onclick = function () {
   position -= width;
   position = Math.max(position, -width * (listElems.length - 1));
   list.style.marginLeft = position + "px";
+  //dots
+  dotIndex++;
+  dotIndex = Math.min(dotIndex, listElems.length - 1);
+  thisSlide(dotIndex);
 };
 document.querySelector(".about_slider_arrow_prev").onclick = function () {
   position += width;
   position = Math.min(position, 0);
   list.style.marginLeft = position + "px";
+  //dots
+  dotIndex--;
+  dotIndex = Math.max(dotIndex, 0);
+  thisSlide(dotIndex);
 };
 //3.Part for favorites_book_shelf
-
 const radioButtons = document.querySelectorAll('input[name="book-type"]');
 const boxes = document.querySelectorAll(".section_favorites_book_shelf");
 

@@ -13,6 +13,7 @@
 html {
   scroll-behavior: smooth;
 }
+
 header {
   padding: 20px 20px;
   height: 90px;
@@ -206,11 +207,9 @@ span label {
 }
 .section_favorites_book_shelf {
   display: none;
-  animation: fade-out 4s 2s ease-out forwards;
+  animation: fadeOut 1s forwards;
 }
-.grow {
-  animation: fade-out 4s 2s ease-out forwards;
-}
+
 .section_favorites_book_shelf_checked {
   display: block;
   padding-right: 40px;
@@ -228,8 +227,11 @@ span label {
 }
 
 @keyframes fade-out {
-  0% {
+  from {
     opacity: 1;
+  }
+  to {
+    opacity: 0;
   }
 }
 .book_shelf_wrapper {
@@ -624,6 +626,189 @@ footer {
   letter-spacing: 2px;
   text-decoration: none;
 }
+.modal {
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+
+  top: 0;
+}
+.dropMenuProfileNOAuth,
+.dropMenuProfileWITHAuth {
+  width: 80px;
+  height: 115px;
+  padding: 5px 3px;
+  border: 1px solid black;
+  background: #fff;
+}
+.dropMenu_title {
+  color: #000;
+  text-align: center;
+  font-family: Inter;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+}
+.line_pop {
+  margin: 5px auto;
+  width: 40px;
+  height: 1px;
+  background: #bb945f;
+}
+.dropMenu_log {
+  display: block;
+  margin-top: 15px;
+  color: #000;
+  text-align: center;
+  font-family: Inter;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 133.333% */
+}
+.dropMenu_register {
+  display: block;
+  margin-top: 10px;
+  color: #000;
+  font-family: Inter;
+  text-align: center;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 133.333% */
+}
+.dropMenu_MyProfile {
+  margin-top: 15px;
+  display: block;
+  color: #000;
+  text-align: center;
+  font-family: Inter;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 133.333% */
+}
+.dropMenu_LogOut {
+  display: block;
+  margin-top: 10px;
+  text-align: center;
+  color: #000;
+  font-family: Inter;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 133.333% */
+}
+.modalLogIn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 250px;
+  height: 262px;
+  padding: 20px 25px;
+  border: 1px solid black;
+  background: #fff;
+}
+.modalRegister_close,
+.modalLogIn_close {
+  position: absolute;
+  top: 7px;
+  right: 15px;
+  font-size: 15px;
+  font-weight: 900;
+}
+fieldset {
+  border: none;
+}
+.title_log_reg {
+  color: #000;
+  text-align: center;
+  font-family: Forum;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 100% */
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+.modal_label {
+  display: block;
+  margin-top: 10px;
+  color: #000;
+  text-align: left;
+  font-family: Inter;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 133.333% */
+  letter-spacing: 0.3px;
+}
+.modal_label_first {
+  margin-top: 20px;
+}
+.modal_input {
+  margin-top: 10px;
+  width: 200px;
+  height: 20px;
+  /* flex-shrink: 0; */
+  border: 1px solid #bb945f;
+}
+.modalLogIn_btn,
+.modalRegister_btn {
+  margin-top: 20px;
+  width: 75px;
+  height: 30px;
+  flex-shrink: 0;
+  color: #0c0c0e;
+  text-align: center;
+  font-family: Inter;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 1px;
+  background: #fff;
+  border-radius: 3px;
+  border: 1px solid #0c0c0e;
+}
+.modalLogIn-bottom,
+.modalRegister-bottom {
+  margin-top: 10px;
+  color: #000;
+  text-shadow: 0px 2px 3px rgba(255, 255, 255, 0.16);
+  font-family: Inter;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.modalLogIn-bottom_link,
+.modalRegister-bottom_link {
+  margin-left: 10px;
+  color: #0c0c0e;
+  text-align: center;
+  font-family: Inter;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 1px;
+  text-decoration-line: underline;
+}
+.modalRegister {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 250px;
+  height: 382px;
+  border: 1px solid black;
+  padding: 20px 25px;
+  background: #fff;
+}
 @media (max-width: 1024px) {
   .container {
     max-width: 1024px;
@@ -721,6 +906,12 @@ footer {
   .section_favorites_book_shelf {
     justify-content: center;
   }
+  .wrapper_favorites_book_season {
+    position: sticky;
+    background-color: white;
+    top: -1px;
+    z-index: 2;
+  }
   .coffeShop_menu {
     display: block;
   }
@@ -790,13 +981,7 @@ footer {
   .about_circle_tablet {
     display: block;
   }
-  .wrapper_favorites_book_season {
-    position: sticky;
 
-    background-color: white;
-    top: -1px;
-    z-index: 2;
-  }
   .coffeShop {
     padding: 0 18px;
   }
