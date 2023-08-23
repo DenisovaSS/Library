@@ -38,18 +38,16 @@ const thisSlide = (index) => {
     circle.classList.remove("about_circle_active");
   }
   if (index === 0) {
-    document.querySelector(".about_slider_arrow_prev").style.backgroundColor =
-      "var(--primary-color)";
+    document.querySelector(".about_slider_arrow_prev").style.pointerEvents =
+      "none";
   } else {
-    document.querySelector(".about_slider_arrow_prev").style.backgroundColor =
-      "";
+    document.querySelector(".about_slider_arrow_prev").style.pointerEvents = "";
   }
   if (index === listElems.length - 1) {
-    document.querySelector(".about_slider_arrow_next").style.backgroundColor =
-      "var(--primary-color)";
+    document.querySelector(".about_slider_arrow_next").style.pointerEvents =
+      "none";
   } else {
-    document.querySelector(".about_slider_arrow_next").style.backgroundColor =
-      "";
+    document.querySelector(".about_slider_arrow_next").style.pointerEvents = "";
   }
   circles[index].classList.add("about_circle_active");
 };
@@ -97,3 +95,116 @@ for (let i = 0; i < radioButtons.length; i++) {
     boxes[i].classList.add("section_favorites_book_shelf_checked");
   });
 }
+//4. Part authorization menu when clicking on the user icon
+// overNav = document.querySelector(".overNav"),
+const logInMenuRegistr = document.querySelector(".dropMenu_register");
+const logInMenu = document.querySelector(".dropMenuProfileNOAuth"),
+  logo = document.querySelector(".menu_img"),
+  logoTablet = document.querySelector(".menu_img_tablet"),
+  modalRegister = document.querySelector(".modalRegister"),
+  modalOver = document.querySelector(".modal");
+logo.addEventListener("click", () => {
+  logInMenu.classList.add("dropMenuProfileNOAuth_active");
+  overNav.classList.add("overNav_active");
+});
+logoTablet.addEventListener("click", () => {
+  logInMenu.classList.add("dropMenuProfileNOAuth_active");
+  overNav.classList.add("overNav_active");
+  nav.classList.remove("nav_active");
+});
+function dropMenuRemove() {
+  logInMenu.classList.remove("dropMenuProfileNOAuth_active");
+  overNav.classList.remove("overNav_active");
+}
+overNav.onclick = dropMenuRemove;
+////if press to dropMenu_register
+logInMenuRegistr.addEventListener("click", () => {
+  logInMenu.classList.toggle("dropMenuProfileNOAuth_active");
+  overNav.classList.toggle("overNav_active");
+  modalRegister.classList.add("modalRegister_active");
+  modalOver.classList.add("modal_active");
+});
+//if press Sign Up
+document
+  .querySelector(".library_register_card_btn_sigh")
+  .addEventListener("click", () => {
+    modalRegister.classList.add("modalRegister_active");
+    modalOver.classList.add("modal_active");
+  });
+//close register
+let modalRegister_close = document.getElementById("modalRegister_close");
+function removemModalRegister() {
+  modalRegister.classList.remove("modalRegister_active");
+  modalOver.classList.remove("modal_active");
+}
+//press cross
+modalRegister_close.addEventListener("click", removemModalRegister);
+//press avoid register
+modalOver.addEventListener("click", (event) => {
+  console.log(event.target);
+  if (event.target === modalOver) {
+    removemModalRegister();
+  }
+});
+//localStorage
+const formRegister = document.getElementById("register");
+const formRegisterElemets = formRegister.elements;
+const btnFormRegister = formRegister.querySelector('[ type="submit"]');
+
+btnFormRegister.addEventListener("click", getInfo);
+function getInfo() {
+  for (let i = 0; i < formRegisterElemets.length; i++) {
+    if (formRegisterElemets[i].type !== "submit") {
+      localStorage.setItem(
+        formRegisterElemets[i].name,
+        formRegisterElemets[i].value,
+      );
+    }
+  }
+}
+let customerFirstName = localStorage.getItem(formRegisterElemets[0].name);
+
+let customerLastName = localStorage.getItem(formRegisterElemets[1].name);
+let customerMail = localStorage.getItem(formRegisterElemets[2].name);
+let customerPassword = localStorage.getItem(formRegisterElemets[3].name);
+
+const randomNumTo16 = (d) => {
+  return (hexString = Number(d).toString(16));
+};
+
+let isUserRegister, isUserLogin; //user is registered
+
+if (customerFirstName && customerLastName && customerMail && customerPassword) {
+  isUserRegister = true;
+} else {
+  isUserRegister = false;
+}
+
+if (isUserRegister === true) {
+  let randomNum = Math.floor(Math.random() * 1000000000);
+  let randomNum16 = randomNumTo16(randomNum);
+  document.querySelector(
+    ".menu_img",
+  ).innerHTML = `<div class="icon-profile_letter">${customerFirstName[0]}${customerLastName[0]}</div>
+   <div class="dropMenuProfileWITHAuth">
+      <div class="dropMenu_title">${randomNum16}</div>
+      <div class="line_pop"></div>
+      <a class="dropMenu_MyProfile">My profile</a>
+      <a class="dropMenu_LogOut">Log Out</a>
+    </div>`;
+  document.querySelector(".menu_img_tablet").innerHTML = `
+  <div class="icon-profile_letter_tablet">${customerFirstName[0]}${customerLastName[0]}</div>`;
+}
+const logoLogin = document.querySelector(".icon-profile_letter"),
+  logoLoginTablet = document.querySelector(".icon-profile_letter_tablet");
+
+logoLogin.addEventListener("click", (e) => {
+  logInMenu.classList.add("dropMenuProfileWITHAuth_active");
+  //overNav.classList.add("overNav_active");
+  console.log(e.target);
+});
+logoLoginTablet.addEventListener("click", () => {
+  logInMenu.classList.add("dropMenuProfileWITHAuth_active");
+  overNav.classList.add("overNav_active");
+  nav.classList.remove("nav_active");
+});

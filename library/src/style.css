@@ -45,6 +45,20 @@ a:hover {
   text-decoration: underline;
   color: var(--primary-color);
 }
+.overNav {
+  display: none;
+  position: fixed;
+  background: #8e8e8e;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  opacity: 0.1;
+}
+.overNav_active {
+  display: block;
+}
 .menu_item {
   list-style-type: none;
 }
@@ -60,10 +74,40 @@ a:hover {
   text-decoration: underline;
   color: var(--primary-color);
 }
-.menu_img {
+.menu_img,
+.menu_img_tablet {
+  position: relative;
+  margin-top: 7px;
   margin-left: 40px;
   width: 28px;
   height: 28px;
+  fill: white;
+}
+.icon-profile_letter,
+.icon-profile_letter_tablet {
+  color: #bb945f;
+  font-family: Inter;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  background-color: #fff;
+  border-radius: 100%;
+  padding: 4px;
+}
+.icon-profile_letter:hover,
+.icon-profile_letter_tablet {
+  cursor: pointer;
+  color: aqua;
+}
+.menu_img:hover path,
+.menu_img_tablet:hover path {
+  transition: 0.3s ease-in;
+  fill: #bb945f;
+  cursor: pointer;
 }
 .wrapper-menu {
   display: flex;
@@ -533,7 +577,8 @@ button[disabled] {
   letter-spacing: 0.019999999552965164%;
   text-align: right;
 }
-.library_register_card_btn {
+.library_register_card_btn,
+.library_register_card_btn_sigh {
   margin: 35px 0 0 20px;
   width: 75px;
   height: 30px;
@@ -548,7 +593,8 @@ button[disabled] {
   float: right;
   transition: all 200ms ease-in-out;
 }
-.library_register_card_btn:hover {
+.library_register_card_btn:hover,
+.library_register_card_btn_sigh:hover {
   border-radius: 2px;
   border: 1px solid #bb945f;
   background: #bb945f;
@@ -632,16 +678,41 @@ footer {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-
   top: 0;
+}
+
+.modalLogIn,
+.modalRegister,
+.modalProfile,
+.modalBuyCard {
+  display: none;
 }
 .dropMenuProfileNOAuth,
 .dropMenuProfileWITHAuth {
-  width: 80px;
+  min-width: 80px;
   height: 115px;
   padding: 5px 3px;
   border: 1px solid black;
   background: #fff;
+}
+.dropMenuProfileNOAuth,
+.dropMenuProfileWITHAuth {
+  position: fixed;
+  top: -100%;
+  right: 19px;
+  transition: all 400ms ease-in-out;
+}
+
+.dropMenuProfileNOAuth_active,
+.dropMenuProfileWITHAuth_active {
+  top: 72px;
+  z-index: 3;
+}
+.modal_active {
+  display: block;
+}
+.modalRegister_active {
+  display: block;
 }
 .dropMenu_title {
   color: #000;
@@ -712,16 +783,30 @@ footer {
   border: 1px solid black;
   background: #fff;
 }
-.modalRegister_close,
+.modalRegister {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 250px;
+  height: 382px;
+  border: 1px solid black;
+  padding: 20px 25px;
+  background: #fff;
+}
+#modalRegister_close,
 .modalLogIn_close {
   position: absolute;
+  width: 20px;
+  height: 20px;
   top: 7px;
   right: 15px;
   font-size: 15px;
   font-weight: 900;
 }
-fieldset {
-  border: none;
+#modalRegister_close:hover,
+.modalLogIn_close:hover {
+  cursor: pointer;
 }
 .title_log_reg {
   color: #000;
@@ -774,6 +859,11 @@ fieldset {
   border-radius: 3px;
   border: 1px solid #0c0c0e;
 }
+.modalLogIn_btn:hover,
+.modalRegister_btn:hover {
+  background-color: var(--primary-color);
+  cursor: pointer;
+}
 .modalLogIn-bottom,
 .modalRegister-bottom {
   margin-top: 10px;
@@ -798,23 +888,18 @@ fieldset {
   letter-spacing: 1px;
   text-decoration-line: underline;
 }
-.modalRegister {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 250px;
-  height: 382px;
-  border: 1px solid black;
-  padding: 20px 25px;
-  background: #fff;
-}
+
 @media (max-width: 1024px) {
   .container {
     max-width: 1024px;
   }
   .menu_img {
+    margin-top: 0;
     margin-right: 85px;
+  }
+  .dropMenuProfileNOAuth,
+  .dropMenuProfileWITHAuth {
+    right: 100px;
   }
 
   .humburger {
@@ -878,7 +963,8 @@ fieldset {
     width: 32px;
     height: 32px;
   }
-  .humburger_item .menu_img {
+  .menu_img_tablet {
+    margin-top: 0;
     margin-right: 37px;
   }
   .menu_cross span {
@@ -1030,7 +1116,8 @@ fieldset {
   .library_register_card_recommend {
     margin: 43px auto 0;
   }
-  .library_register_card_btn {
+  .library_register_card_btn,
+  .library_register_card_btn_sigh {
     margin: 38px 0 0 10px;
   }
 }

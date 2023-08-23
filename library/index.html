@@ -20,7 +20,13 @@
         <nav class="nav">           
           <ul class="menu">
             <li class="humburger_item">
-              <a class="menu_logo"><img class="menu_img" src="pictures/icon_profile.svg" alt="logo"></a>
+              <div class="menu_img_tablet">
+                <svg class="icon-profile" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M28 14C28 21.732 21.732 28 14 28C6.26801 28 0 21.732 0 14C0 6.26801 6.26801 0 14 0C21.732 0 28 6.26801 28 14ZM18.6667 7.77778C18.6667 10.3551 16.5774 12.4444 14.0001 12.4444C11.4227 12.4444 9.33339 10.3551 9.33339 7.77778C9.33339 5.20045 11.4227 3.11111 14.0001 3.11111C16.5774 3.11111 18.6667 5.20045 18.6667 7.77778ZM19.4998 16.2781C20.9584 17.7367 21.7778 19.715 21.7778 21.7778H14L6.22225 21.7778C6.22225 19.715 7.0417 17.7367 8.50031 16.2781C9.95893 14.8194 11.9372 14 14 14C16.0628 14 18.0411 14.8194 19.4998 16.2781Z"
+                    fill="white" />
+                </svg>
+              </div>
               <div class="menu_cross">
               <span></span>
               <span></span>
@@ -33,7 +39,29 @@
             <li class="menu_item"><a href="#card" class="menu_link">Library Card</a></li>
           </ul>         
         </nav>     
-        <a class="menu_logo"><img class="menu_img" src="pictures/icon_profile.svg" alt="logo"></a>
+        <div class="menu_img">
+            <svg
+        class="icon-profile"
+        width="28"
+        height="28"
+        viewBox="0 0 28 28"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        >
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M28 14C28 21.732 21.732 28 14 28C6.26801 28 0 21.732 0 14C0 6.26801 6.26801 0 14 0C21.732 0 28 6.26801 28 14ZM18.6667 7.77778C18.6667 10.3551 16.5774 12.4444 14.0001 12.4444C11.4227 12.4444 9.33339 10.3551 9.33339 7.77778C9.33339 5.20045 11.4227 3.11111 14.0001 3.11111C16.5774 3.11111 18.6667 5.20045 18.6667 7.77778ZM19.4998 16.2781C20.9584 17.7367 21.7778 19.715 21.7778 21.7778H14L6.22225 21.7778C6.22225 19.715 7.0417 17.7367 8.50031 16.2781C9.95893 14.8194 11.9372 14 14 14C16.0628 14 18.0411 14.8194 19.4998 16.2781Z"
+          fill="white"
+        />
+        </svg>
+        <div class="dropMenuProfileNOAuth">
+        <div class="dropMenu_title">Profile</div>
+        <div class="line_pop"></div>
+        <a class="dropMenu_log">Log In</a>
+        <a class="dropMenu_register">Register</a>
+        </div>
+      </div>
               <!-- <button class="menu_btn">Login</button> -->
       </div>
       <div class="humburger">
@@ -347,6 +375,9 @@
       </section>
     <section class="contacts" id="contact">      
         <h2 class="title">Our Contacts</h2>
+        <div class="link_next">
+          <a href="about_me.html" title="About Svitlana"> About me </a>
+        </div>
         <div class="title_line"></div>
         <div class="contact_wrapper">
           <div class="contact_card">
@@ -370,9 +401,9 @@
             <div class="member_card_wrapper">
             <form class="member_card" method="post">
                 <p class="member_card_title">Brooklyn Public Library</p>
-                 <input type="search" id="first-name" name="first-name" placeholder="Reader's name" class="member_card_search"  required>
+                 <input type="search" name="first-name" placeholder="Reader's name" class="member_card_search"  required>
                   <br>
-                  <input type="search" id="last-name" name="last-name" placeholder="Card number" class="member_card_search"  required>
+                  <input type="search" name="last-name" placeholder="Card number" class="member_card_search"  required>
              </form>
              <button class="member_card_btn">Check the card</button>
             </div>
@@ -382,7 +413,7 @@
             <p class="library_register_card_recommend">You will be able to see a reader card after logging into account or you can register a new account</p>
             <div class="register_card_wrapper_btn">
               <button class="library_register_card_btn">Log in</button>
-              <button class="library_register_card_btn">Sign Up</button>
+              <button class="library_register_card_btn_sigh">Sign Up</button>
             </div>
           </div>
         </div>      
@@ -418,51 +449,42 @@
       <a href="https://rs.school/js/" class="real_footer_rss" target="_blank">The Rolling Scopes School</a>
       <a class="real_footer_github" href="https://github.com/DenisovaSS" target="_blank">DenisovaSS</a>
     </div>
-   </footer>
-   <section class="modal">
-    <div class="dropMenuProfileNOAuth">
-      <div class="dropMenu_title">Profile</div>
-      <div class="line_pop"></div>
-      <a class="dropMenu_log">Log In</a>
-      <a class="dropMenu_register">Register</a>
-    </div>
-    <div class="dropMenuProfileWITHAuth">
-      <div class="dropMenu_title">Profile</div>
-      <div class="line_pop"></div>
-      <a class="dropMenu_MyProfile">My profile</a>
-      <a class="dropMenu_LogOut">Log Out</a>
-    </div>
+  </footer>
+   
+  <div class="modal">    
+    
     <div class="modalLogIn">
       <div class="modalLogIn_close">&#10006;</div>
       <div class="title_log_reg">Login</div>
       <form method="post" action="#">        
            <label for="email" class="modal_label modal_label_first">E-mail or readers card
-            <input class="modal_input" id="email" name="email" type="email" required /></label>
+            <input class="modal_input" name="email" type="email" required /></label>
             <label for="new-password" class="modal_label">Password
-            <input class="modal_input"  id="new-password" name="new-password" type="password" pattern="[a-z0-5]{8,}" required /></label>        
+            <input class="modal_input" name="new-password" type="password" pattern="[a-z0-5]{8,}" required /></label>        
         <input type="submit" value="Log In" class="modalLogIn_btn"/>
         <p class="modalLogIn-bottom">Don’t have an account? <a class="modalLogIn-bottom_link" href="#">Register</a></p>
       </form>
     </div>
     <div class="modalRegister">
-      <div class="modalRegister_close">&#10006;</div>
+      <div id="modalRegister_close">&#10006;</div>
       <div class="title_log_reg">Register</div>
-      <form method="post" action="https://register-demo.freecodecamp.org">        
+      <form id="register">        
           <label for="first-name" class="modal_label modal_label_first">First name
-            <input id="first-name" name="first-name" type="text" class="modal_input"  required /></label>
+            <input id="first-name_register" name="first-name" type="text" class="modal_input"  required /></label>
           <label for="last-name" class="modal_label">Last name
-            <input id="last-name" name="last-name" type="text" class="modal_input"  required /></label>
+            <input id="last-name_register" name="last-name" type="text" class="modal_input"  required /></label>
           <label for="email" class="modal_label">E-mail
-            <input id="email" name="email" type="email" class="modal_input"  required /></label>
+            <input id="email_register" name="email" type="email" class="modal_input"  required /></label>
           <label for="new-password" class="modal_label">Password
-            <input id="new-password" name="new-password" type="password" class="modal_input"  pattern="[a-z0-5]{8,}" required /></label>
+            <input id="new-password_register" name="new-password" type="password" class="modal_input" title="no less 8"  required /></label>
+            <!-- pattern="[a-z,0-5]{8,}" -->
         <input type="submit" value="Sign Up" class="modalRegister_btn" />
         <p class="modalRegister-bottom">Already have an account?<a class="modalRegister-bottom_link" href="#">Login</a></p>
       </form>
     </div>
     <div class="modalProfile"></div>
-    <div class="modalBuyCard"></div>
-   </section>
+    <div class="modalBuyCard"></div>  
+  </div>
 </div>
   <script src="src/java.js"></script>
     <!-- <script src="src/index.js"></script> -->
