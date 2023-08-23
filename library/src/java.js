@@ -17,7 +17,7 @@ function menuRemove() {
 //if press menuCross
 menuCross.onclick = menuRemove;
 //if press to avoid nav
-overNav.onclick = menuRemove;
+overNav.addEventListener("click", menuRemove);
 //if press to menu items
 menuItem.forEach((item) => {
   item.onclick = menuRemove;
@@ -96,17 +96,19 @@ for (let i = 0; i < radioButtons.length; i++) {
   });
 }
 //4. Part authorization menu when clicking on the user icon
-// overNav = document.querySelector(".overNav"),
+
 const logInMenuRegistr = document.querySelector(".dropMenu_register");
 const logInMenu = document.querySelector(".dropMenuProfileNOAuth"),
   logo = document.querySelector(".menu_img"),
   logoTablet = document.querySelector(".menu_img_tablet"),
   modalRegister = document.querySelector(".modalRegister"),
   modalOver = document.querySelector(".modal");
+//click for logo without register
 logo.addEventListener("click", () => {
   logInMenu.classList.add("dropMenuProfileNOAuth_active");
   overNav.classList.add("overNav_active");
 });
+//and click in burgermenu
 logoTablet.addEventListener("click", () => {
   logInMenu.classList.add("dropMenuProfileNOAuth_active");
   overNav.classList.add("overNav_active");
@@ -117,14 +119,15 @@ function dropMenuRemove() {
   overNav.classList.remove("overNav_active");
 }
 overNav.onclick = dropMenuRemove;
-////if press to dropMenu_register
+////if press to dropMenu_register link
+
 logInMenuRegistr.addEventListener("click", () => {
-  logInMenu.classList.toggle("dropMenuProfileNOAuth_active");
-  overNav.classList.toggle("overNav_active");
+  logInMenu.classList.remove("dropMenuProfileNOAuth_active");
+  overNav.classList.remove("overNav_active");
   modalRegister.classList.add("modalRegister_active");
   modalOver.classList.add("modal_active");
 });
-//if press Sign Up
+//if press Sign Up in form
 document
   .querySelector(".library_register_card_btn_sigh")
   .addEventListener("click", () => {
@@ -137,7 +140,7 @@ function removemModalRegister() {
   modalRegister.classList.remove("modalRegister_active");
   modalOver.classList.remove("modal_active");
 }
-//press cross
+//press cross in register
 modalRegister_close.addEventListener("click", removemModalRegister);
 //press avoid register
 modalOver.addEventListener("click", (event) => {
@@ -146,7 +149,7 @@ modalOver.addEventListener("click", (event) => {
     removemModalRegister();
   }
 });
-//localStorage
+//localStorage set elements
 const formRegister = document.getElementById("register");
 const formRegisterElemets = formRegister.elements;
 const btnFormRegister = formRegister.querySelector('[ type="submit"]');
@@ -162,24 +165,23 @@ function getInfo() {
     }
   }
 }
-let customerFirstName = localStorage.getItem(formRegisterElemets[0].name);
-
-let customerLastName = localStorage.getItem(formRegisterElemets[1].name);
-let customerMail = localStorage.getItem(formRegisterElemets[2].name);
-let customerPassword = localStorage.getItem(formRegisterElemets[3].name);
-
+let customerFirstName = localStorage.getItem(formRegisterElemets[0].name),
+  customerLastName = localStorage.getItem(formRegisterElemets[1].name),
+  customerMail = localStorage.getItem(formRegisterElemets[2].name),
+  customerPassword = localStorage.getItem(formRegisterElemets[3].name);
+//create random number
 const randomNumTo16 = (d) => {
   return (hexString = Number(d).toString(16));
 };
 
-let isUserRegister, isUserLogin; //user is registered
+let isUserRegister, isUserLogin; //user is registered and user logIN
 
 if (customerFirstName && customerLastName && customerMail && customerPassword) {
   isUserRegister = true;
 } else {
   isUserRegister = false;
 }
-
+//if customer first register
 if (isUserRegister === true) {
   let randomNum = Math.floor(Math.random() * 1000000000);
   let randomNum16 = randomNumTo16(randomNum);
@@ -195,16 +197,23 @@ if (isUserRegister === true) {
   document.querySelector(".menu_img_tablet").innerHTML = `
   <div class="icon-profile_letter_tablet">${customerFirstName[0]}${customerLastName[0]}</div>`;
 }
-const logoLogin = document.querySelector(".icon-profile_letter"),
+//dropMenuProfileWITHAuth
+let logoLogin = document.querySelector(".icon-profile_letter");
+let logInMenuWith = document.querySelector(".dropMenuProfileWITHAuth"),
   logoLoginTablet = document.querySelector(".icon-profile_letter_tablet");
 
-logoLogin.addEventListener("click", (e) => {
-  logInMenu.classList.add("dropMenuProfileWITHAuth_active");
-  //overNav.classList.add("overNav_active");
-  console.log(e.target);
+logoLogin.addEventListener("click", () => {
+  logInMenuWith.classList.add("dropMenuProfileWITHAuth_active");
+  overNav.classList.add("overNav_active");
 });
 logoLoginTablet.addEventListener("click", () => {
-  logInMenu.classList.add("dropMenuProfileWITHAuth_active");
+  logInMenuWith.classList.add("dropMenuProfileWITHAuth_active");
   overNav.classList.add("overNav_active");
   nav.classList.remove("nav_active");
 });
+function dropMenuWithAuthRemove() {
+  logInMenuWith.classList.remove("dropMenuProfileWITHAuth_active");
+  overNav.classList.remove("overNav_active");
+}
+
+overNav.addEventListener("click", dropMenuWithAuthRemove);

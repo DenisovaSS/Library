@@ -457,10 +457,10 @@
       <div class="modalLogIn_close">&#10006;</div>
       <div class="title_log_reg">Login</div>
       <form method="post" action="#">        
-           <label for="email" class="modal_label modal_label_first">E-mail or readers card
-            <input class="modal_input" name="email" type="email" required /></label>
-            <label for="new-password" class="modal_label">Password
-            <input class="modal_input" name="new-password" type="password" pattern="[a-z0-5]{8,}" required /></label>        
+           <label for="modalLogIn_email" class="modal_label modal_label_first">E-mail or readers card
+            <input id="modalLogIn_email" class="modal_input" name="email" type="email" required /></label>
+            <label for="modalLogIn_new-password" class="modal_label">Password
+            <input id="modalLogIn_new-password" class="modal_input" name="new-password" type="password" pattern="[a-z0-5]{8,}" required /></label>        
         <input type="submit" value="Log In" class="modalLogIn_btn"/>
         <p class="modalLogIn-bottom">Don’t have an account? <a class="modalLogIn-bottom_link" href="#">Register</a></p>
       </form>
@@ -469,13 +469,13 @@
       <div id="modalRegister_close">&#10006;</div>
       <div class="title_log_reg">Register</div>
       <form id="register">        
-          <label for="first-name" class="modal_label modal_label_first">First name
+          <label for="first-name_register" class="modal_label modal_label_first">First name
             <input id="first-name_register" name="first-name" type="text" class="modal_input"  required /></label>
-          <label for="last-name" class="modal_label">Last name
+          <label for="last-name_register" class="modal_label">Last name
             <input id="last-name_register" name="last-name" type="text" class="modal_input"  required /></label>
-          <label for="email" class="modal_label">E-mail
+          <label for="email_register" class="modal_label">E-mail
             <input id="email_register" name="email" type="email" class="modal_input"  required /></label>
-          <label for="new-password" class="modal_label">Password
+          <label for="new-password_register" class="modal_label">Password
             <input id="new-password_register" name="new-password" type="password" class="modal_input" title="no less 8"  required /></label>
             <!-- pattern="[a-z,0-5]{8,}" -->
         <input type="submit" value="Sign Up" class="modalRegister_btn" />
