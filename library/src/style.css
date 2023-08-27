@@ -711,7 +711,9 @@ footer {
 .modal_active {
   display: block;
 }
-.modalRegister_active {
+.modalRegister_active,
+.modalLogIn_active,
+.modalProfile_active {
   display: block;
 }
 .dropMenu_title {
@@ -887,6 +889,11 @@ footer {
   line-height: normal;
   letter-spacing: 1px;
   text-decoration-line: underline;
+}
+.modalProfile {
+  width: 600px;
+  height: 400px;
+  background: #fff;
 }
 
 @media (max-width: 1024px) {
