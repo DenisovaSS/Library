@@ -328,6 +328,20 @@ span label {
   text-align: left;
   text-transform: capitalize;
 }
+.BTN_mj {
+  width: 75px;
+  height: 30px;
+  position: absolute;
+  left: 20px;
+  bottom: 15px;
+  color: var(--dark-color);
+  font-family: Inter;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border-radius: 2px;
+  transition: all 200ms ease-in-out;
+}
 .book_shelf_btn {
   width: 75px;
   height: 30px;
