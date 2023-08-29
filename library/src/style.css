@@ -75,6 +75,7 @@ a:hover {
   color: var(--primary-color);
 }
 .menu_img,
+.menu_img_logIn,
 .menu_img_tablet {
   position: relative;
   margin-top: 7px;
@@ -83,6 +84,10 @@ a:hover {
   height: 28px;
   fill: white;
 }
+/* .menu_img_active,
+.menu_img_logIn_active {
+  display: block;
+} */
 .icon-profile_letter,
 .icon-profile_letter_tablet {
   color: #bb945f;
@@ -914,7 +919,9 @@ footer {
   .container {
     max-width: 1024px;
   }
-  .menu_img {
+  .menu_img,
+  .menu_img_logIn,
+  .menu_img_logIn {
     margin-top: 0;
     margin-right: 85px;
   }

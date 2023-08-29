@@ -95,17 +95,75 @@ for (let i = 0; i < radioButtons.length; i++) {
     boxes[i].classList.add("section_favorites_book_shelf_checked");
   });
 }
-//4. Part authorization menu when clicking on the user icon
-
+//4. Part authorization menu.
+const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 const logInMenuRegistr = document.querySelector(".dropMenu_register");
 const ProfilelogInMenuNo = document.querySelector(".dropMenuProfileNOAuth"),
   logo = document.querySelector(".menu_img"),
   logoTablet = document.querySelector(".menu_img_tablet"),
-  modalRegister = document.querySelector(".modalRegister"),
+  logoCustomer = document.querySelector(".menu_img_logIn"),
+  // modalRegister = document.querySelector(".modalRegister"),
   modalOver = document.querySelector(".modal"),
   modalLogIn = document.querySelector(".modalLogIn"),
-  logInMenuLog = ProfilelogInMenuNo.querySelector(".dropMenu_log");
+  logInMenuLog = ProfilelogInMenuNo.querySelector(".dropMenu_log"),
+  modalLogIn_close = document.querySelector(".modalLogIn_close"),
+  formRegister = document.getElementById("register"),
+  modalRegister_close = document.getElementById("modalRegister_close");
+const formRegisterElemets = formRegister.elements;
+const btnFormRegister = formRegister.querySelector('[ type="submit"]');
+let LogOut_link = document.querySelector(".dropMenu_LogOut");
+let logoLogin = document.querySelector(".icon-profile_letter");
+let ProfileLogInMenuWith = document.querySelector(".dropMenuProfileWITHAuth"),
+  dropMenu_title = ProfileLogInMenuWith.querySelector(".dropMenu_title"),
+  logoLoginTablet = document.querySelector(".icon-profile_letter_tablet"),
+  myProfileLink = ProfileLogInMenuWith.querySelector(".dropMenu_MyProfile"),
+  modalMyProfile = document.querySelector(".modalProfile");
+// Function to show registration form
+function showRegistrationForm() {
+  console.log("its client no registration");
+}
+// Function to show login form
+function showLoginForm() {
+  logo.style.display = "block";
+  logoCustomer.style.display = "none";
+  console.log("its client has registration, but logOut");
+}
+// Function to show user info
+function showUserInfo(user) {
+  logoLogin.textContent = user.firstName[0] + user.lastName[0];
+  dropMenu_title.textContent = user.cardNumber;
+  logo.style.display = "none";
+  logoCustomer.style.display = "block";
+  logoLogin.addEventListener("click", () => {
+    ProfileLogInMenuWith.classList.add("dropMenuProfileWITHAuth_active");
+    overNav.classList.add("overNav_active");
+  });
+  // Event listener for logout button
+  LogOut_link.addEventListener("click", function () {
+    logoutUser();
+  });
+}
+// Function to handle user login
+function loginUser(email, password) {
+  const users = JSON.parse(localStorage.getItem("users")) || [];
+  const user = users.find((u) => u.email === email && u.password === password);
 
+  if (user) {
+    localStorage.setItem("loggedInUser", JSON.stringify(user));
+    showUserInfo(user);
+  } else {
+    alert("Not find your mail or password. Please try again.");
+  }
+}
+// Function to handle user logout
+function logoutUser() {
+  localStorage.removeItem("loggedInUser");
+  showLoginForm();
+}
+
+//
+///
+// Event listener for user logo without login
 //click for logo without register
 logo.addEventListener("click", () => {
   ProfilelogInMenuNo.classList.add("dropMenuProfileNOAuth_active");
@@ -127,20 +185,19 @@ logInMenuRegistr.addEventListener("click", (event) => {
   event.stopPropagation();
   ProfilelogInMenuNo.classList.remove("dropMenuProfileNOAuth_active");
   overNav.classList.remove("overNav_active");
-  modalRegister.classList.add("modalRegister_active");
+  formRegister.classList.add("modalRegister_active");
   modalOver.classList.add("modal_active");
 });
-//if press Sign Up in form
+//if press Sign Up in  general document
 document
   .querySelector(".library_register_card_btn_sigh")
   .addEventListener("click", () => {
-    modalRegister.classList.add("modalRegister_active");
+    formRegister.classList.add("modalRegister_active");
     modalOver.classList.add("modal_active");
   });
 //close register
-let modalRegister_close = document.getElementById("modalRegister_close");
 function removemModalRegister() {
-  modalRegister.classList.remove("modalRegister_active");
+  formRegister.classList.remove("modalRegister_active");
   modalOver.classList.remove("modal_active");
   modalLogIn.classList.remove("modalLogIn_active");
 }
@@ -162,132 +219,42 @@ logInMenuLog.addEventListener("click", (event) => {
   modalOver.classList.add("modal_active");
 });
 //close modalLogIn
-let modalLogIn_close = document.querySelector(".modalLogIn_close");
 //press cross in LogIn
 modalLogIn_close.addEventListener("click", removemModalRegister);
-//press link register in modalLogIn
-// const modalLogInLinkRegister = document.querySelector(
-//   ".modalLogIn-bottom_link",
-// );
 
-//localStorage set elements
-/////
-////
-////
-const formRegister = document.getElementById("register");
-const formRegisterElemets = formRegister.elements;
-const btnFormRegister = formRegister.querySelector('[ type="submit"]');
-
-let customerFirstName = localStorage.getItem(formRegisterElemets[0].name),
-  customerLastName = localStorage.getItem(formRegisterElemets[1].name),
-  customerMail = localStorage.getItem(formRegisterElemets[2].name),
-  customerPassword = localStorage.getItem(formRegisterElemets[3].name),
-  customerLogIn = 1;
-
-let isUserRegister; //user is registered
-//if customer first register
-function checkCustomer() {
-  if (customerLogIn === 1) {
-    document.querySelector(
-      ".menu_img",
-    ).innerHTML = `<div class="icon-profile_letter">${customerFirstName[0]}${
-      customerLastName[0]
-    }</div>
-   <div class="dropMenuProfileWITHAuth">
-      <div class="dropMenu_title">${localStorage.getItem("cardNumber")}</div>
-      <div class="line_pop"></div>
-      <a class="dropMenu_MyProfile">My profile</a>
-      <a class="dropMenu_LogOut">Log Out</a>
-    </div>`;
-    document.querySelector(".menu_img_tablet").innerHTML = `
-  <div class="icon-profile_letter_tablet">${customerFirstName[0]}${customerLastName[0]}</div>`;
-    //if click for icon-profile_letter
-    let logoLogin = document.querySelector(".icon-profile_letter");
-    let ProfileLogInMenuWith = document.querySelector(
-      ".dropMenuProfileWITHAuth",
-    );
-    logoLogin.addEventListener("click", () => {
-      ProfileLogInMenuWith.classList.add("dropMenuProfileWITHAuth_active");
-      overNav.classList.add("overNav_active");
-    });
-    //if click logOut
-    let LogOut_link = document.querySelector(".dropMenu_LogOut");
-    LogOut_link.addEventListener("click", (e) => {
-      console.log(e.target);
-      customerLogIn = 0;
-      console.log(customerLogIn);
-      checkCustomer();
-    });
-  } else {
-    console.log("HAppy");
-  }
-}
-
-//click in button in register form
-btnFormRegister.addEventListener("click", (event) => {
-  event.preventDefault();
-  for (let i = 0; i < formRegisterElemets.length; i++) {
-    if (formRegisterElemets[i].type !== "submit") {
-      localStorage.setItem(
-        formRegisterElemets[i].name,
-        formRegisterElemets[i].value,
-      );
-    }
-  }
-  //create random number
+// Event listener for registration form submission
+formRegister.addEventListener("submit", function (e) {
+  e.preventDefault();
   const randomNumTo16 = (d) => {
     return (hexString = Number(d).toString(16));
   };
   let randomNum = Math.floor(Math.random() * 1000000000);
-  let randomNum16 = randomNumTo16(randomNum);
-  localStorage.setItem("cardNumber", randomNum16);
-  customerLogIn = 1;
-  checkCustomer();
+  const firstName = document.getElementById("first-name_register").value;
+  const lastName = document.getElementById("last-name_register").value;
+  const email = document.getElementById("email_register").value;
+  const password = document.getElementById("new-password_register").value;
+  const cardNumber = randomNumTo16(randomNum);
+  const users = JSON.parse(localStorage.getItem("users")) || [];
+  users.push({ firstName, lastName, email, password, cardNumber });
+  localStorage.setItem("users", JSON.stringify(users));
+  removemModalRegister();
+  showLoginForm();
+});
+// Event listener for login form submission
+modalLogIn.addEventListener("submit", function (e) {
+  e.preventDefault();
+  const loginEmail = document.getElementById("modalLogIn_email").value;
+  const loginPassword = document.getElementById(
+    "modalLogIn_new-password",
+  ).value;
+
+  loginUser(loginEmail, loginPassword);
   removemModalRegister();
 });
-// console.log(customerLogIn);
-if (customerFirstName && customerLastName && customerMail && customerPassword) {
-  isUserRegister = true;
+
+// Initial display based on login status
+if (loggedInUser) {
+  showUserInfo(loggedInUser);
 } else {
-  isUserRegister = false;
+  showRegistrationForm();
 }
-// let logoLogin = document.querySelector(".BTN_mj");
-
-// logoLogin.addEventListener("click", () => {
-//   // console.log("next");
-//   customerLogIn = 0;
-//   checkCustomer();
-// });
-checkCustomer();
-// function dropMenuProfileWITHAuth() {}
-// LogOut_link.addEventListener("click", function () {
-//   localStorage.setItem("LogIn", false);
-//   checkCustomer(); //
-//   myProfileLink.addEventListener("click", () => {
-//     modalMyProfile.classList.add("modalProfile_active");
-//     modalOver.classList.add("modal_active");
-//   });
-
-//   //dropMenuProfileWITHAuth
-//   let logoLogin = document.querySelector(".icon-profile_letter");
-//   let ProfileLogInMenuWith = document.querySelector(".dropMenuProfileWITHAuth"),
-//     logoLoginTablet = document.querySelector(".icon-profile_letter_tablet"),
-//     myProfileLink = ProfileLogInMenuWith.querySelector(".dropMenu_MyProfile"),
-//     modalMyProfile = document.querySelector(".modalProfile");
-//   //
-//   logoLogin.addEventListener("click", () => {
-//     ProfileLogInMenuWith.classList.add("dropMenuProfileWITHAuth_active");
-//     overNav.classList.add("overNav_active");
-//   });
-//   logoLoginTablet.addEventListener("click", () => {
-//     ProfileLogInMenuWith.classList.add("dropMenuProfileWITHAuth_active");
-//     overNav.classList.add("overNav_active");
-//     nav.classList.remove("nav_active");
-//   });
-//   function dropMenuWithAuthRemove() {
-//     ProfileLogInMenuWith.classList.remove("dropMenuProfileWITHAuth_active");
-//     overNav.classList.remove("overNav_active");
-//   }
-
-//   overNav.addEventListener("click", dropMenuWithAuthRemove);
-// });
