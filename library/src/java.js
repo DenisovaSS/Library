@@ -132,6 +132,7 @@ function showLoginForm() {
 function showUserInfo(user) {
   logoLogin.textContent = user.firstName[0] + user.lastName[0];
   dropMenu_title.textContent = user.cardNumber;
+  logoLogin.setAttribute("title", `${user.firstName} ${user.lastName}`);
   logo.style.display = "none";
   logoCustomer.style.display = "block";
   logoLogin.addEventListener("click", () => {
@@ -145,19 +146,6 @@ function showUserInfo(user) {
     logoutUser();
   });
 }
-
-// if (localStorage.getItem("visitCount")) {
-//   // Retrieve the existing count
-//   let visitCount = parseInt(localStorage.getItem("visitCount"));
-//   // Increment the count
-//   visitCount++;
-//   // Store the updated count back in localStorage
-//   localStorage.setItem("visitCount", visitCount.toString());
-// } else {
-//   // If it's the first visit, initialize the count to 1
-//   localStorage.setItem("visitCount", "1");
-// }
-// Function to handle user login
 function loginUser(email, password) {
   const users = JSON.parse(localStorage.getItem("users")) || [];
 

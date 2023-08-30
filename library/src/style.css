@@ -333,20 +333,7 @@ span label {
   text-align: left;
   text-transform: capitalize;
 }
-.BTN_mj {
-  width: 75px;
-  height: 30px;
-  position: absolute;
-  left: 20px;
-  bottom: 15px;
-  color: var(--dark-color);
-  font-family: Inter;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  border-radius: 2px;
-  transition: all 200ms ease-in-out;
-}
+
 .book_shelf_btn {
   width: 75px;
   height: 30px;
@@ -702,8 +689,8 @@ footer {
 
 .modalLogIn,
 .modalRegister,
-.modalProfile,
-.modalBuyCard {
+.modalBuyCard,
+.modalProfile {
   display: none;
 }
 .dropMenuProfileNOAuth,
@@ -731,9 +718,11 @@ footer {
   display: block;
 }
 .modalRegister_active,
-.modalLogIn_active,
-.modalProfile_active {
+.modalLogIn_active {
   display: block;
+}
+.modalProfile_active {
+  display: flex;
 }
 .dropMenu_title {
   color: #000;
@@ -815,6 +804,16 @@ footer {
   padding: 20px 25px;
   background: #fff;
 }
+.modalProfile {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 600px;
+  height: 400px;
+  background: #fff;
+}
 #modalRegister_close,
 .modalLogIn_close {
   position: absolute;
@@ -826,7 +825,8 @@ footer {
   font-weight: 900;
 }
 #modalRegister_close:hover,
-.modalLogIn_close:hover {
+.modalLogIn_close:hover,
+#modalProfile_close:hover {
   cursor: pointer;
 }
 .title_log_reg {
@@ -909,12 +909,161 @@ footer {
   letter-spacing: 1px;
   text-decoration-line: underline;
 }
-.modalProfile {
-  width: 600px;
-  height: 400px;
-  background: #fff;
-}
 
+.profile_black {
+  width: 170px;
+  height: 100%;
+  background: rgba(12, 12, 14, 1);
+  padding-top: 139px;
+}
+.profile_logo {
+  margin: 0 auto;
+  width: 80px;
+  height: 80px;
+  background: #fff;
+  color: #bb945f;
+  text-align: center;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 100% */
+  text-transform: capitalize;
+  padding: 30px 0;
+}
+.profile_firstLastName {
+  margin: 15px auto 0;
+  width: 120px;
+  height: auto;
+  text-align: center;
+  background: #fff;
+  color: #000;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  text-transform: capitalize;
+  padding: 5px 0;
+}
+.profile_white {
+  position: relative;
+  width: 100%;
+  background: #fff;
+  padding-top: 40px;
+}
+#modalProfile_close {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 18px;
+  right: 18px;
+  font-size: 15px;
+  font-weight: 900;
+}
+.profile_title {
+  color: #000;
+  margin-left: 20px;
+  font-family: Forum;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 50% */
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+.pfofile_info {
+  margin-top: 40px;
+  display: flex;
+}
+.profile_visit,
+.profile_bonuse,
+.profile_book {
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.pfofile_info_title {
+  color: #000;
+  text-align: center;
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 20px; /* 100% */
+  letter-spacing: 0.4px;
+  text-transform: capitalize;
+}
+.pfofile_info_img {
+  margin-top: 10px;
+  width: 20px;
+  height: 21px;
+}
+.profile_visit_count,
+.profile_bonuse_count,
+.profile_book_count {
+  color: #000;
+  text-align: center;
+  font-family: Inter;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 200% */
+  letter-spacing: 0.2px;
+  text-transform: capitalize;
+}
+.profileRent_title {
+  margin: 20px 0 0 20px;
+  color: #0c0c0e;
+  font-family: Inter;
+  font-size: 25px;
+  font-weight: 400;
+  line-height: 20px; /* 80% */
+}
+.profile_books_rented {
+  height: 45px;
+  width: 95%;
+  margin: 30px 0 0 20px;
+  color: #000;
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 20px; /* 100% */
+  letter-spacing: 2px;
+  text-transform: capitalize;
+}
+.profile_footer {
+  margin: 40px 0 0 20px;
+  display: flex;
+  align-items: center;
+}
+.profile_footer_title {
+  color: #0c0c0e;
+  text-align: center;
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 20px; /* 100% */
+}
+.profile_cardNumber {
+  margin-left: 15px;
+  color: #bb945f;
+  text-align: center;
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 20px; /* 100% */
+}
+.profile_footer_btn {
+  margin-left: 15px;
+  width: 15px;
+  height: 15px;
+  background-color: rgba(255, 255, 255, 1);
+  border: none;
+}
+.profile_footer_btn:hover {
+  cursor: pointer;
+}
 @media (max-width: 1024px) {
   .container {
     max-width: 1024px;
