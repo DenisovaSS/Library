@@ -117,7 +117,13 @@ let ProfileLogInMenuWith = document.querySelector(".dropMenuProfileWITHAuth"),
   dropMenu_title = ProfileLogInMenuWith.querySelector(".dropMenu_title"),
   logoLoginTablet = document.querySelector(".icon-profile_letter_tablet"),
   myProfileLink = ProfileLogInMenuWith.querySelector(".dropMenu_MyProfile"),
-  modalMyProfile = document.querySelector(".modalProfile");
+  modalMyProfile = document.querySelector(".modalProfile"),
+  modalProfileClose = document.getElementById("modalProfile_close"),
+  profileVisitCount = modalMyProfile.querySelector(".profile_visit_count"),
+  profileCopyBtn = modalMyProfile.querySelector(".profile_footer_btn"),
+  profileCardNumber = modalMyProfile.querySelector(".profile_cardNumber"),
+  profileLogo = modalMyProfile.querySelector(".profile_logo"),
+  profileFirstLastName = modalMyProfile.querySelector(".profile_firstLastName");
 // Function to show registration form
 function showRegistrationForm() {
   console.log("its client no registration");
@@ -130,21 +136,48 @@ function showLoginForm() {
 }
 // Function to show user info
 function showUserInfo(user) {
-  logoLogin.textContent = user.firstName[0] + user.lastName[0];
-  dropMenu_title.textContent = user.cardNumber;
-  logoLogin.setAttribute("title", `${user.firstName} ${user.lastName}`);
   logo.style.display = "none";
   logoCustomer.style.display = "block";
+  //change logo
+  logoLogin.textContent = user.firstName[0] + user.lastName[0];
+  //change profile for number
+  dropMenu_title.textContent = user.cardNumber;
+  //change in profile modal: number, logo, firstLastName
+  profileCardNumber.textContent = user.cardNumber;
+  profileLogo.textContent = user.firstName[0] + user.lastName[0];
+  profileFirstLastName.textContent = `${user.firstName} ${user.lastName}`;
+  //add atribute title
+  logoLogin.setAttribute("title", `${user.firstName} ${user.lastName}`);
+  //add count visit in profile
+  profileVisitCount.textContent = user.visitCount;
+  //Event listener for button for copy number profile
+  profileCopyBtn.addEventListener("click", function () {
+    let area = document.createElement("textarea");
+    area.value = dropMenu_title.innerHTML;
+    window.navigator.clipboard.writeText(area.value);
+    area.remove();
+  });
+  // Event listener for Logo Login link
   logoLogin.addEventListener("click", () => {
     ProfileLogInMenuWith.classList.add("dropMenuProfileWITHAuth_active");
     overNav.classList.add("overNav_active");
   });
-  // Event listener for logout button
+  // Event listener for logout link
   LogOut_link.addEventListener("click", function () {
     ProfileLogInMenuWith.classList.remove("dropMenuProfileWITHAuth_active");
     overNav.classList.remove("overNav_active");
     logoutUser();
   });
+  //Event listener for my profile link
+  myProfileLink.addEventListener("click", function () {
+    modalMyProfile.classList.add("modalProfile_active");
+    modalOver.classList.add("modal_active");
+    overNav.classList.remove("overNav_active");
+    ProfileLogInMenuWith.classList.remove("dropMenuProfileWITHAuth_active");
+  });
+  //close modalMyProfile
+  //press cross in MyProfile
+  modalProfileClose.addEventListener("click", removeModal);
 }
 function loginUser(email, password) {
   const users = JSON.parse(localStorage.getItem("users")) || [];
@@ -202,19 +235,20 @@ document
     formRegister.classList.add("modalRegister_active");
     modalOver.classList.add("modal_active");
   });
-//close register
-function removemModalRegister() {
+//close all section modals - logIn, register, my profile, modalBuyCard
+function removeModal() {
   formRegister.classList.remove("modalRegister_active");
   modalOver.classList.remove("modal_active");
   modalLogIn.classList.remove("modalLogIn_active");
+  modalMyProfile.classList.remove("modalProfile_active");
 }
 //press cross in register
-modalRegister_close.addEventListener("click", removemModalRegister);
+modalRegister_close.addEventListener("click", removeModal);
 //press avoid register
 modalOver.addEventListener("click", (event) => {
   // console.log(event.target);
   if (event.target === modalOver) {
-    removemModalRegister();
+    removeModal();
   }
 });
 //click for link LogIn in profile NOAuth
@@ -227,7 +261,7 @@ logInMenuLog.addEventListener("click", (event) => {
 });
 //close modalLogIn
 //press cross in LogIn
-modalLogIn_close.addEventListener("click", removemModalRegister);
+modalLogIn_close.addEventListener("click", removeModal);
 
 // Event listener for registration form submission
 formRegister.addEventListener("submit", function (e) {
@@ -245,7 +279,7 @@ formRegister.addEventListener("submit", function (e) {
   const users = JSON.parse(localStorage.getItem("users")) || [];
   users.push({ firstName, lastName, email, password, cardNumber, visitCount });
   localStorage.setItem("users", JSON.stringify(users));
-  removemModalRegister();
+  removeModal();
   // showLoginForm();
   loginUser(email, password);
 });
@@ -258,7 +292,7 @@ modalLogIn.addEventListener("submit", function (e) {
   ).value;
 
   loginUser(loginEmail, loginPassword);
-  removemModalRegister();
+  removeModal();
 });
 
 // Initial display based on login status
