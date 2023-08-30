@@ -477,8 +477,7 @@
     </form>
     <form class="modalRegister"id="register">
       <div id="modalRegister_close">&#10006;</div>
-      <div class="title_log_reg">Register</div>
-              
+      <div class="title_log_reg">Register</div>              
           <label for="first-name_register" class="modal_label modal_label_first">First name
             <input id="first-name_register" name="first-name" type="text" class="modal_input"  required /></label>
           <label for="last-name_register" class="modal_label">Last name
@@ -489,8 +488,7 @@
             <input id="new-password_register" name="new-password" type="password" class="modal_input" title="no less 8"  required /></label>
             <!-- pattern="[a-z,0-5]{8,}" -->
         <input type="submit" value="Sign Up" class="modalRegister_btn" />
-        <p class="modalRegister-bottom">Already have an account?<a class="modalRegister-bottom_link" href="#">Login</a></p>
-      
+        <p class="modalRegister-bottom">Already have an account?<a class="modalRegister-bottom_link" href="#">Login</a></p>      
     </form>
     <div class="modalProfile">
       <div class="profile_black">
@@ -524,11 +522,37 @@
          <div class="profile_cardNumber">F00234030</div>
          <button class="profile_footer_btn"><img src="pictures/icon copy.svg" alt="button for copy"></button>
         </div>
-
-
       </div>
     </div>
-    <div class="modalBuyCard"></div>  
+    <form class="modalBuyCard" id="BankCard">
+      
+      <div class="modalBuyCard_header">Buy a library card
+        <div class="modalBuyCard_close">&#10006;</div>
+      </div>
+      <div class="modalBuyCard_main">
+        <div class="modalBuyCard_infoBankCard">        
+            <label for="modalBuyCard_number" >Bank card number
+              <input id="modalBuyCard_number"  name="number_card" type="number" required /></label>
+            <legend>Expiration code</legend>
+              <input id="expiration_code1"  name="expiration_code" type="number" required />
+               <input id="expiration_code2" name="expiration_code" type="number" required />
+            <label for="modalBuyCard_CVC">CVC
+              <input id="modalBuyCard_CVC" type="number" required /></label>
+            <label id="CardholderName" for="modalBuyCard_CardholderName">Cardholder name
+               <input id="modalBuyCard_CardholderName" type="text" required /></label>
+            <label for="modalBuyCard_PostalCode">Postal code
+                <input id="modalBuyCard_PostalCode" type="number" required /></label>
+            <label for="modalBuyCard_City">City / Town
+                 <input id="modalBuyCard_City" type="text" required /></label>  
+                  <input id="modalBuyCard_btn" type="submit" value="Buy"   /></label>
+                  <div class="modalBuyCard_price">$ 25.00</div>
+
+        </div>
+        <div class="modalBuyCard_info">If you are live, work, attend school, or pay property taxes in New York State, you can get a $25 digital library card
+        right now using this online form. Visitors to New York State can also use this form to apply for a temporary card.
+</div>
+      </div>
+    </form>  
   </div>
 </div>
   <script src="src/java.js"></script>

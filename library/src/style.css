@@ -600,7 +600,8 @@ button[disabled] {
   transition: all 200ms ease-in-out;
 }
 .library_register_card_btn:hover,
-.library_register_card_btn_sigh:hover {
+.library_register_card_btn_sigh:hover,
+#modalBuyCard_btn:hover {
   border-radius: 2px;
   border: 1px solid #bb945f;
   background: #bb945f;
@@ -1064,6 +1065,112 @@ footer {
 .profile_footer_btn:hover {
   cursor: pointer;
 }
+.modalBuyCard {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 650px;
+  height: 540px;
+  background: #fff;
+}
+.modalBuyCard_close {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 18px;
+  right: 18px;
+  font-size: 22px;
+  font-weight: 900;
+}
+.modalBuyCard_header {
+  position: relative;
+  padding-top: 20px;
+  color: #fff;
+  text-align: center;
+  font-family: Forum;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 50% */
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  width: 650px;
+  height: 60px;
+  background: #0c0c0e;
+}
+.modalBuyCard_main {
+  padding: 30px 40px;
+  display: flex;
+}
+.modalBuyCard_infoBankCard {
+  width: 200px;
+}
+.modalBuyCard_infoBankCard legend,
+.modalBuyCard_infoBankCard label {
+  display: block;
+  margin-top: 10px;
+  color: #000;
+  font-family: Inter;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 20px; /* 133.333% */
+  letter-spacing: 0.3px;
+}
+#CardholderName {
+  margin-top: 20px;
+}
+.modalBuyCard_infoBankCard input {
+  margin-top: 10px;
+  display: block;
+  width: 200px;
+  height: 20px;
+  border: 1px solid #bb945f;
+}
+#expiration_code1,
+#expiration_code2,
+#modalBuyCard_CVC {
+  width: 45px;
+  height: 20px;
+  display: inline-block;
+}
+#modalBuyCard_CVC {
+  display: block;
+}
+#modalBuyCard_btn {
+  display: inline;
+  width: 75px;
+  height: 30px;
+  color: #0c0c0e;
+  text-align: center;
+  font-family: Inter;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 1px;
+}
+.modalBuyCard_price {
+  display: inline;
+  margin-left: 10px;
+  color: #0c0c0e;
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 20px; /* 100% */
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.modalBuyCard_info {
+  margin-left: 40px;
+  width: 330px;
+  color: #8e8e8e;
+  font-family: Inter;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 20px; /* 133.333% */
+  letter-spacing: 2px;
+}
 @media (max-width: 1024px) {
   .container {
     max-width: 1024px;
@@ -1078,7 +1185,6 @@ footer {
   .dropMenuProfileWITHAuth {
     right: 100px;
   }
-
   .humburger {
     display: block;
     position: absolute;
