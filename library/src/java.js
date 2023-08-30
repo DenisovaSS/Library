@@ -140,15 +140,34 @@ function showUserInfo(user) {
   });
   // Event listener for logout button
   LogOut_link.addEventListener("click", function () {
+    ProfileLogInMenuWith.classList.remove("dropMenuProfileWITHAuth_active");
+    overNav.classList.remove("overNav_active");
     logoutUser();
   });
 }
+
+// if (localStorage.getItem("visitCount")) {
+//   // Retrieve the existing count
+//   let visitCount = parseInt(localStorage.getItem("visitCount"));
+//   // Increment the count
+//   visitCount++;
+//   // Store the updated count back in localStorage
+//   localStorage.setItem("visitCount", visitCount.toString());
+// } else {
+//   // If it's the first visit, initialize the count to 1
+//   localStorage.setItem("visitCount", "1");
+// }
 // Function to handle user login
 function loginUser(email, password) {
   const users = JSON.parse(localStorage.getItem("users")) || [];
+
   const user = users.find((u) => u.email === email && u.password === password);
 
   if (user) {
+    let visitCount = +user.visitCount;
+    visitCount++;
+    user.visitCount = visitCount;
+    localStorage.setItem("users", JSON.stringify(users));
     localStorage.setItem("loggedInUser", JSON.stringify(user));
     showUserInfo(user);
   } else {
@@ -234,11 +253,13 @@ formRegister.addEventListener("submit", function (e) {
   const email = document.getElementById("email_register").value;
   const password = document.getElementById("new-password_register").value;
   const cardNumber = randomNumTo16(randomNum);
+  let visitCount = 1;
   const users = JSON.parse(localStorage.getItem("users")) || [];
-  users.push({ firstName, lastName, email, password, cardNumber });
+  users.push({ firstName, lastName, email, password, cardNumber, visitCount });
   localStorage.setItem("users", JSON.stringify(users));
   removemModalRegister();
-  showLoginForm();
+  // showLoginForm();
+  loginUser(email, password);
 });
 // Event listener for login form submission
 modalLogIn.addEventListener("submit", function (e) {
@@ -258,3 +279,4 @@ if (loggedInUser) {
 } else {
   showRegistrationForm();
 }
+///
