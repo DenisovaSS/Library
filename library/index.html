@@ -175,7 +175,7 @@
               </h3>
               <h4 class="name_book autor_book">By Clive Irving</h4>
               <p class="description_book">A timely and revelatory new biography of Queen Elizabeth (and her family) exploring how the Windsors have evolved and thrived as the modern world has changed around them.</p>
-              <button disabled>Own</button>
+              <button class="book_shelf_btn">Buy</button>
               <img class="book_img" src="pictures/books/bookW_4.png" alt="The Book Eaters">
             </div>
           </div>
@@ -216,7 +216,7 @@
               </h3>
               <h4 class="name_book autor_book">By Angie Cruz</h4>
               <p class="description_book">A fascinating story of a teenage girl who marries a man twice her age with the promise to bring her to America. Her marriage is an opportunity for her family to eventually immigrate. For fans of Isabel Allende and Julia Alvarez.</p>
-              <button class="book_shelf_btn btn_own">Own</button>
+              <button class="book_shelf_btn">Buy</button>
               <img class="book_img" src="pictures/books/book4.png" alt="The Book Eaters">
             </div>
           </div>
@@ -261,7 +261,7 @@
               <p class="description_book">An epic saga of seven generations of one family encompasses the tumultuous history of Hawaii as a Hawaiian woman gathers
               her four granddaughters together in an erotic tale of villains and dreamers, queens and revolutionaries, lepers and
               healers.</p>
-              <button class="book_shelf_btn btn_own">Own</button>
+              <button class="book_shelf_btn">Buy</button>
               <img class="book_img" src="pictures/books/book8.png" alt="The Book Eaters">
             </div>
           </div>
@@ -304,7 +304,7 @@
               </h3>
               <h4 class="name_book autor_book">By Megan Milks</h4>
               <p class="description_book">Exes Tegan and Sara find themselves chained together by hairballs of codependency. A father and child experience the shared trauma of giving birth to gods from their wounds.</p>
-              <button class="book_shelf_btn btn_own">Own</button>
+              <button class="book_shelf_btn">Buy</button>
               <img class="book_img" src="pictures/books/book12.png" alt="By Megan Milks">
             </div>
           </div>
@@ -387,8 +387,7 @@
       </section>
     <section class="contacts" id="contact">      
         <h2 class="title">Our Contacts</h2>
-        <div class="link_next">
-          <a href="about_me.html" title="About Svitlana"> About me </a>
+        <div class="link_next">        
         </div>
         <div class="title_line"></div>
         <div class="contact_wrapper">
@@ -413,9 +412,9 @@
             <div class="member_card_wrapper">
             <form class="member_card" method="post">
                 <p class="member_card_title">Brooklyn Public Library</p>
-                 <input type="search" name="first-name" placeholder="Reader's name" class="member_card_search"  required>
+                 <input type="text" name="readerName" placeholder="Reader's name" class="member_card_search_name"  required>
                   <br>
-                  <input type="search" name="last-name" placeholder="Card number" class="member_card_search"  required>
+                  <input type="text" name="readerNum" placeholder="Card number" class="member_card_search_num"  required>
              </form>
              <button class="member_card_btn">Check the card</button>
             </div>
@@ -525,26 +524,26 @@
       </div>
     </div>
     <form class="modalBuyCard" id="BankCard">
-      
       <div class="modalBuyCard_header">Buy a library card
         <div class="modalBuyCard_close">&#10006;</div>
       </div>
       <div class="modalBuyCard_main">
-        <div class="modalBuyCard_infoBankCard">        
+        <div class="modalBuyCard_infoBankCard">
             <label for="modalBuyCard_number" >Bank card number
-              <input id="modalBuyCard_number"  name="number_card" type="number" required /></label>
+              <input id="modalBuyCard_number"  name="number_card" type="text"  pattern="[0-9,' ']{16,20}"
+      title="16-digit number" /></label>
             <legend>Expiration code</legend>
-              <input id="expiration_code1"  name="expiration_code" type="number" required />
-               <input id="expiration_code2" name="expiration_code" type="number" required />
+              <input id="expiration_code1"  name="expiration_code" type="text" pattern="\d{2}" required  />
+              <input id="expiration_code2" name="expiration_code" type="text" pattern="\d{2}" required />
             <label for="modalBuyCard_CVC">CVC
-              <input id="modalBuyCard_CVC" type="number" required /></label>
+              <input id="modalBuyCard_CVC" type="text" pattern="\d{3}" required  /></label>
             <label id="CardholderName" for="modalBuyCard_CardholderName">Cardholder name
                <input id="modalBuyCard_CardholderName" type="text" required /></label>
             <label for="modalBuyCard_PostalCode">Postal code
-                <input id="modalBuyCard_PostalCode" type="number" required /></label>
+                <input id="modalBuyCard_PostalCode" type="text" required  /></label>
             <label for="modalBuyCard_City">City / Town
-                 <input id="modalBuyCard_City" type="text" required /></label>  
-                  <input id="modalBuyCard_btn" type="submit" value="Buy"   /></label>
+                 <input id="modalBuyCard_City" type="text" required  /></label>  
+            <input id="modalBuyCard_btn" type="submit" value="Buy"  />
                   <div class="modalBuyCard_price">$ 25.00</div>
 
         </div>

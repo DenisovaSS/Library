@@ -123,19 +123,34 @@ let ProfileLogInMenuWith = document.querySelector(".dropMenuProfileWITHAuth"),
   profileCopyBtn = modalMyProfile.querySelector(".profile_footer_btn"),
   profileCardNumber = modalMyProfile.querySelector(".profile_cardNumber"),
   profileLogo = modalMyProfile.querySelector(".profile_logo"),
-  profileFirstLastName = modalMyProfile.querySelector(".profile_firstLastName");
+  profileFirstLastName = modalMyProfile.querySelector(".profile_firstLastName"),
+  buttonsForBuy = document.querySelectorAll(".book_shelf_btn"),
+  modalBuyCard = document.querySelector(".modalBuyCard"),
+  modalBuyCardClose = document.querySelector(".modalBuyCard_close"),
+  modalBuyCardBtn = document.querySelector(".modalBuyCard_btn"),
+  readerName = document.querySelector(".member_card_search_name"),
+  readerCardNum = document.querySelector(".member_card_search_num"),
+  readerBtn = document.querySelector(".member_card_btn");
+
 // Function to show registration form
 function showRegistrationForm() {
   console.log("its client no registration");
+  buttonsForBuy.forEach((btn) => {
+    btn.addEventListener("click", openLogInMenu);
+  });
 }
 // Function to show login form
 function showLoginForm() {
   logo.style.display = "block";
   logoCustomer.style.display = "none";
   console.log("its client has registration, but logOut");
+  buttonsForBuy.forEach((btn) => {
+    btn.addEventListener("click", openLogInMenu);
+  });
 }
 // Function to show user info
 function showUserInfo(user) {
+  console.log("its client logIn");
   logo.style.display = "none";
   logoCustomer.style.display = "block";
   //change logo
@@ -146,6 +161,17 @@ function showUserInfo(user) {
   profileCardNumber.textContent = user.cardNumber;
   profileLogo.textContent = user.firstName[0] + user.lastName[0];
   profileFirstLastName.textContent = `${user.firstName} ${user.lastName}`;
+  //Change in member card
+  changeLibraryCard(user);
+  changeBtnLibraryCard(user);
+  changeVisitYourProfile();
+  //Event listener for button - profile
+  document
+    .querySelector(".library_card_btn_profile")
+    .addEventListener("click", () => {
+      modalMyProfile.classList.add("modalProfile_active");
+      modalOver.classList.add("modal_active");
+    });
   //add atribute title
   logoLogin.setAttribute("title", `${user.firstName} ${user.lastName}`);
   //add count visit in profile
@@ -178,6 +204,15 @@ function showUserInfo(user) {
   //close modalMyProfile
   //press cross in MyProfile
   modalProfileClose.addEventListener("click", removeModal);
+  //press buy book
+  buttonsForBuy.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      // console.log(e.target);
+      openModalBuyCard();
+    });
+  });
+  //press croos in modalBuyCard
+  modalBuyCardClose.addEventListener("click", removeModal);
 }
 function loginUser(email, password) {
   const users = JSON.parse(localStorage.getItem("users")) || [];
@@ -200,8 +235,60 @@ function logoutUser() {
   localStorage.removeItem("loggedInUser");
   showLoginForm();
 }
+//Function for open LogIn menu
+function openLogInMenu() {
+  modalLogIn.classList.add("modalLogIn_active");
+  modalOver.classList.add("modal_active");
+}
+function openModalBuyCard() {
+  modalBuyCard.classList.add("modalBuyCard_active");
+  modalOver.classList.add("modal_active");
+}
 
-//
+//Function for closing all section modals - logIn, register, my profile, modalBuyCard
+function removeModal() {
+  formRegister.classList.remove("modalRegister_active");
+  modalOver.classList.remove("modal_active");
+  modalLogIn.classList.remove("modalLogIn_active");
+  modalMyProfile.classList.remove("modalProfile_active");
+  modalBuyCard.classList.remove("modalBuyCard_active");
+}
+//function for change your library card
+
+function changeLibraryCard(customer) {
+  readerName.value = `${customer.firstName} ${customer.lastName}`;
+  readerCardNum.value = customer.cardNumber;
+}
+function changeBtnLibraryCard(customer) {
+  const newElement = document.createElement("div");
+  newElement.innerHTML = `<div class="pfofile_info_libCard">
+          <div class="profile_libCard">
+            <p class="pfofile_info_titlelibCard">Visits</p>
+            <img class="pfofile_info_imglibCard" src="pictures/Union.png" alt="man">
+            <div class="profile_visit_count">${customer.visitCount}</div>            
+          </div>
+          <div class="profile_libCard">
+              <p class="pfofile_info_titlelibCard">Bonuses</p>
+              <img class="pfofile_info_imglibCard" src="pictures/Star.png" alt="star">
+              <div class="profile_bonuse_count">0</div>
+          </div>
+          <div class="profile_libCard">
+            <p class="pfofile_info_titlelibCard">Books</p>
+            <img class="pfofile_info_imglibCard" src="pictures/book.png" alt="book">
+            <div class="profile_book_count">0</div>
+          </div>
+        </div>`;
+  readerBtn.before(newElement);
+  readerBtn.style.display = "none";
+}
+function changeVisitYourProfile() {
+  document.querySelector(".library_register_card").innerHTML = `
+   <div class="library_register_card_title">Visit your profile</div>
+            <p class="library_register_card_recommend">With a digital library card you get free access to the Library’s wide array of digital resources including e-books, databases, educational resources, and more.</p>
+            <div class="register_card_wrapper_btn">
+              <button class="library_card_btn_profile">Profile</button>
+            </div>`;
+}
 ///
 // Event listener for user logo without login
 //click for logo without register
@@ -215,12 +302,14 @@ logoTablet.addEventListener("click", () => {
   overNav.classList.add("overNav_active");
   nav.classList.remove("nav_active");
 });
+
+// Event listener for dropMenuRemove
 function dropMenuRemove() {
   ProfilelogInMenuNo.classList.remove("dropMenuProfileNOAuth_active");
   overNav.classList.remove("overNav_active");
 }
 overNav.onclick = dropMenuRemove;
-////if press to dropMenu_register link
+//Event listener for if press to dropMenu_register link
 logInMenuRegistr.addEventListener("click", (event) => {
   event.stopPropagation();
   ProfilelogInMenuNo.classList.remove("dropMenuProfileNOAuth_active");
@@ -228,39 +317,32 @@ logInMenuRegistr.addEventListener("click", (event) => {
   formRegister.classList.add("modalRegister_active");
   modalOver.classList.add("modal_active");
 });
-//if press Sign Up in  general document
+//Event listener for press Sign Up in general document
 document
   .querySelector(".library_register_card_btn_sigh")
   .addEventListener("click", () => {
     formRegister.classList.add("modalRegister_active");
     modalOver.classList.add("modal_active");
   });
-//close all section modals - logIn, register, my profile, modalBuyCard
-function removeModal() {
-  formRegister.classList.remove("modalRegister_active");
-  modalOver.classList.remove("modal_active");
-  modalLogIn.classList.remove("modalLogIn_active");
-  modalMyProfile.classList.remove("modalProfile_active");
-}
-//press cross in register
+
+//Event listener for press cross in register
 modalRegister_close.addEventListener("click", removeModal);
-//press avoid register
+//Event listener for press avoid register
 modalOver.addEventListener("click", (event) => {
   // console.log(event.target);
   if (event.target === modalOver) {
     removeModal();
   }
 });
-//click for link LogIn in profile NOAuth
+//Event listener for click for link LogIn in profile NOAuth
 logInMenuLog.addEventListener("click", (event) => {
   event.stopPropagation();
   ProfilelogInMenuNo.classList.remove("dropMenuProfileNOAuth_active");
   overNav.classList.remove("overNav_active");
-  modalLogIn.classList.add("modalLogIn_active");
-  modalOver.classList.add("modal_active");
+  openLogInMenu();
 });
-//close modalLogIn
-//press cross in LogIn
+
+//Event listener for press cross in LogIn
 modalLogIn_close.addEventListener("click", removeModal);
 
 // Event listener for registration form submission
@@ -275,7 +357,7 @@ formRegister.addEventListener("submit", function (e) {
   const email = document.getElementById("email_register").value;
   const password = document.getElementById("new-password_register").value;
   const cardNumber = randomNumTo16(randomNum);
-  let visitCount = 1;
+  let visitCount = 0;
   const users = JSON.parse(localStorage.getItem("users")) || [];
   users.push({ firstName, lastName, email, password, cardNumber, visitCount });
   localStorage.setItem("users", JSON.stringify(users));

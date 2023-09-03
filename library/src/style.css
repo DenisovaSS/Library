@@ -521,7 +521,12 @@ button[disabled] {
   letter-spacing: 0.019999999552965164%;
   text-align: left;
 }
-.member_card_search {
+.member_card_search_name,
+.member_card_search_num {
+  padding: 8px 0 8px 20px;
+  color: var(--primary-color);
+  font-family: Forum;
+  font-size: 30px;
   margin-top: 22px;
   width: 520px;
   height: 66px;
@@ -529,7 +534,8 @@ button[disabled] {
   border-radius: 10px;
   border: none;
 }
-.member_card_search::placeholder {
+.member_card_search_name::placeholder,
+.member_card_search_num::placeholder {
   padding: 8px 0 8px 20px;
   color: var(--gray-color);
   font-family: Forum;
@@ -584,7 +590,8 @@ button[disabled] {
   text-align: right;
 }
 .library_register_card_btn,
-.library_register_card_btn_sigh {
+.library_register_card_btn_sigh,
+.library_card_btn_profile {
   margin: 35px 0 0 20px;
   width: 75px;
   height: 30px;
@@ -601,7 +608,8 @@ button[disabled] {
 }
 .library_register_card_btn:hover,
 .library_register_card_btn_sigh:hover,
-#modalBuyCard_btn:hover {
+#modalBuyCard_btn:hover,
+.library_card_btn_profile:hover {
   border-radius: 2px;
   border: 1px solid #bb945f;
   background: #bb945f;
@@ -719,7 +727,8 @@ footer {
   display: block;
 }
 .modalRegister_active,
-.modalLogIn_active {
+.modalLogIn_active,
+.modalBuyCard_active {
   display: block;
 }
 .modalProfile_active {
@@ -810,7 +819,7 @@ footer {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-
+  /* border: 0.1px solid white; */
   width: 600px;
   height: 400px;
   background: #fff;
@@ -827,7 +836,8 @@ footer {
 }
 #modalRegister_close:hover,
 .modalLogIn_close:hover,
-#modalProfile_close:hover {
+#modalProfile_close:hover,
+.modalBuyCard_close:hover {
   cursor: pointer;
 }
 .title_log_reg {
@@ -977,6 +987,7 @@ footer {
   margin-top: 40px;
   display: flex;
 }
+
 .profile_visit,
 .profile_bonuse,
 .profile_book {
@@ -1012,6 +1023,34 @@ footer {
   line-height: 20px; /* 200% */
   letter-spacing: 0.2px;
   text-transform: capitalize;
+}
+.pfofile_info_libCard {
+  display: flex;
+  justify-content: center;
+  margin: -5px;
+  gap: 35px;
+}
+.profile_libCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1px;
+}
+.profile_libCardlibCard {
+  color: #000;
+  text-align: center;
+  font-family: Inter;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 200% */
+  letter-spacing: 0.2px;
+  text-transform: capitalize;
+}
+.pfofile_info_imglibCard {
+  width: 20px;
+  height: 21px;
 }
 .profileRent_title {
   margin: 20px 0 0 20px;
@@ -1070,7 +1109,7 @@ footer {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 650px;
+  width: 640px;
   height: 540px;
   background: #fff;
 }
@@ -1095,7 +1134,7 @@ footer {
   line-height: 20px; /* 50% */
   letter-spacing: 0.8px;
   text-transform: uppercase;
-  width: 650px;
+  width: 640px;
   height: 60px;
   background: #0c0c0e;
 }
@@ -1428,11 +1467,13 @@ footer {
       width: 94%;
       height: auto;
     }
-    .member_card_search {
+    .member_card_search_name,
+    .member_card_search_num {
       width: 90%;
       height: 50px;
     }
-    .member_card_search::placeholder {
+    .member_card_search_name::placeholder,
+    .member_card_search_num::placeholder {
       font-size: 20px;
     }
     .library_register_card_recommend {
