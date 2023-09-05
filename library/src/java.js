@@ -120,6 +120,7 @@ let ProfileLogInMenuWith = document.querySelector(".dropMenuProfileWITHAuth"),
   modalMyProfile = document.querySelector(".modalProfile"),
   modalProfileClose = document.getElementById("modalProfile_close"),
   profileVisitCount = modalMyProfile.querySelector(".profile_visit_count"),
+  profileBooksCount = modalMyProfile.querySelector(".profile_book_count"),
   profileCopyBtn = modalMyProfile.querySelector(".profile_footer_btn"),
   profileCardNumber = modalMyProfile.querySelector(".profile_cardNumber"),
   profileLogo = modalMyProfile.querySelector(".profile_logo"),
@@ -150,6 +151,22 @@ function showLoginForm() {
 }
 // Function to show user info
 function showUserInfo(user) {
+  const users = JSON.parse(localStorage.getItem("users")) || [];
+  users.forEach((u) => {
+    if (u.email === user.email) {
+      for (let i = 0; i < user.books.length; i++) {
+        let k = u.books[i].title;
+        buttonsForBuy.forEach((btn) => {
+          const title = btn.getAttribute("data-title");
+          if (title === k) {
+            btn.disabled = true;
+            btn.textContent = "own";
+          }
+        });
+      }
+    }
+  });
+
   console.log("its client logIn");
   logo.style.display = "none";
   logoCustomer.style.display = "block";
@@ -207,8 +224,22 @@ function showUserInfo(user) {
   //press buy book
   buttonsForBuy.forEach((btn) => {
     btn.addEventListener("click", (e) => {
-      // console.log(e.target);
-      openModalBuyCard();
+      console.log(e.target);
+      // openModalBuyCard();
+      // addBookForRented(user);
+      const title = btn.getAttribute("data-title");
+      const autor = btn.getAttribute("data-autor");
+      user.books.push({ title, autor });
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+      users.forEach((u) => {
+        if (u.email === user.email) {
+          u.books = user.books;
+        }
+      });
+      localStorage.setItem("users", JSON.stringify(users));
+      localStorage.setItem("loggedInUser", JSON.stringify(user));
+      btn.textContent = "own";
+      btn.disabled = true;
     });
   });
   //press croos in modalBuyCard
@@ -233,6 +264,7 @@ function loginUser(email, password) {
 // Function to handle user logout
 function logoutUser() {
   localStorage.removeItem("loggedInUser");
+  document.location.reload();
   showLoginForm();
 }
 //Function for open LogIn menu
@@ -244,6 +276,7 @@ function openModalBuyCard() {
   modalBuyCard.classList.add("modalBuyCard_active");
   modalOver.classList.add("modal_active");
 }
+///
 
 //Function for closing all section modals - logIn, register, my profile, modalBuyCard
 function removeModal() {
@@ -265,7 +298,7 @@ function changeBtnLibraryCard(customer) {
           <div class="profile_libCard">
             <p class="pfofile_info_titlelibCard">Visits</p>
             <img class="pfofile_info_imglibCard" src="pictures/Union.png" alt="man">
-            <div class="profile_visit_count">${customer.visitCount}</div>            
+            <div class="profile_visit_count">${customer.visitCount}</div>
           </div>
           <div class="profile_libCard">
               <p class="pfofile_info_titlelibCard">Bonuses</p>
@@ -275,7 +308,7 @@ function changeBtnLibraryCard(customer) {
           <div class="profile_libCard">
             <p class="pfofile_info_titlelibCard">Books</p>
             <img class="pfofile_info_imglibCard" src="pictures/book.png" alt="book">
-            <div class="profile_book_count">0</div>
+            <div class="profile_book_count">${customer.books.length}</div>
           </div>
         </div>`;
   readerBtn.before(newElement);
@@ -357,9 +390,18 @@ formRegister.addEventListener("submit", function (e) {
   const email = document.getElementById("email_register").value;
   const password = document.getElementById("new-password_register").value;
   const cardNumber = randomNumTo16(randomNum);
+  const books = [];
   let visitCount = 0;
   const users = JSON.parse(localStorage.getItem("users")) || [];
-  users.push({ firstName, lastName, email, password, cardNumber, visitCount });
+  users.push({
+    firstName,
+    lastName,
+    email,
+    password,
+    cardNumber,
+    visitCount,
+    books,
+  });
   localStorage.setItem("users", JSON.stringify(users));
   removeModal();
   // showLoginForm();
