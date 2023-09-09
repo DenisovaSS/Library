@@ -120,6 +120,7 @@ let ProfileLogInMenuWith = document.querySelector(".dropMenuProfileWITHAuth"),
   modalMyProfile = document.querySelector(".modalProfile"),
   modalProfileClose = document.getElementById("modalProfile_close"),
   profileVisitCount = modalMyProfile.querySelector(".profile_visit_count"),
+  profileBooksName = modalMyProfile.querySelector(".profile_books_rented"),
   profileBooksCount = modalMyProfile.querySelector(".profile_book_count"),
   profileCopyBtn = modalMyProfile.querySelector(".profile_footer_btn"),
   profileCardNumber = modalMyProfile.querySelector(".profile_cardNumber"),
@@ -132,25 +133,29 @@ let ProfileLogInMenuWith = document.querySelector(".dropMenuProfileWITHAuth"),
   readerName = document.querySelector(".member_card_search_name"),
   readerCardNum = document.querySelector(".member_card_search_num"),
   readerBtn = document.querySelector(".member_card_btn");
-
+let activeUser = null;
 // Function to show registration form
 function showRegistrationForm() {
   console.log("its client no registration");
-  buttonsForBuy.forEach((btn) => {
-    btn.addEventListener("click", openLogInMenu);
-  });
+  // buttonsForBuy.forEach((btn) => {
+  //   btn.addEventListener("click", buttonEventLogOut);
+  // });
+  // function buttonEventLogOut() {
+  //   openLogInMenu();
+  // }
 }
 // Function to show login form
 function showLoginForm() {
   logo.style.display = "block";
   logoCustomer.style.display = "none";
   console.log("its client has registration, but logOut");
-  buttonsForBuy.forEach((btn) => {
-    btn.addEventListener("click", openLogInMenu);
-  });
+  // buttonsForBuy.forEach((btn) => {
+  //   btn.addEventListener("click", openLogInMenu);
+  // });
 }
 // Function to show user info
 function showUserInfo(user) {
+  //first check which books buy before
   const users = JSON.parse(localStorage.getItem("users")) || [];
   users.forEach((u) => {
     if (u.email === user.email) {
@@ -191,8 +196,17 @@ function showUserInfo(user) {
     });
   //add atribute title
   logoLogin.setAttribute("title", `${user.firstName} ${user.lastName}`);
-  //add count visit in profile
+  //add count visit and books in profile
   profileVisitCount.textContent = user.visitCount;
+  profileBooksCount.textContent = user.books.length;
+  //add name books for myprofile
+  // profileBooksName.textContent = Object.values(user.books);
+  const listBookHTML = user.books
+    .map((book) => {
+      return `<li class = 'profile_books_titleAutor'>${book.title}, ${book.autor}</li>`;
+    })
+    .join(" ");
+  profileBooksName.innerHTML = listBookHTML;
   //Event listener for button for copy number profile
   profileCopyBtn.addEventListener("click", function () {
     let area = document.createElement("textarea");
@@ -221,41 +235,75 @@ function showUserInfo(user) {
   //close modalMyProfile
   //press cross in MyProfile
   modalProfileClose.addEventListener("click", removeModal);
-  //press buy book
+
+  //Event listener for buttons buy book
   buttonsForBuy.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-      console.log(e.target);
-      // openModalBuyCard();
-      // addBookForRented(user);
-      const title = btn.getAttribute("data-title");
-      const autor = btn.getAttribute("data-autor");
-      user.books.push({ title, autor });
-      const users = JSON.parse(localStorage.getItem("users")) || [];
-      users.forEach((u) => {
-        if (u.email === user.email) {
-          u.books = user.books;
-        }
-      });
-      localStorage.setItem("users", JSON.stringify(users));
-      localStorage.setItem("loggedInUser", JSON.stringify(user));
-      btn.textContent = "own";
-      btn.disabled = true;
-    });
+    btn.addEventListener("click", buttonEvent);
   });
-  //press croos in modalBuyCard
-  modalBuyCardClose.addEventListener("click", removeModal);
+  function buttonEvent(event) {
+    const btn = event.target;
+    if (user.libraryCardBuy) {
+      addBookForRented(user, btn);
+    } else {
+      openModalBuyCard();
+    }
+  }
+
+  // function buttonEvent() {
+  //   if (libraryCardBuy) {
+  //     // //with logIn and card
+  //     addBookForRented(user, btn);
+  //   }
+  //   //if no buylibrary card
+  //   // openModalBuyCard();
+  // }
+  //
+  //Function for buy books
+  function addBookForRented(user, btn) {
+    const title = btn.getAttribute("data-title");
+    const autor = btn.getAttribute("data-autor");
+    user.books.push({ title, autor });
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    users.forEach((u) => {
+      if (u.email === user.email) {
+        u.books = user.books;
+      }
+    });
+    localStorage.setItem("users", JSON.stringify(users));
+    localStorage.setItem("loggedInUser", JSON.stringify(user));
+    btn.textContent = "own";
+    btn.disabled = true;
+  }
+  //Event listener for buy library card form
+  modalBuyCard.addEventListener("submit", function (e) {
+    e.preventDefault();
+    user.libraryCardBuy = true;
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    users.forEach((u) => {
+      if (u.email === user.email) {
+        u.libraryCardBuy = user.libraryCardBuy;
+      }
+    });
+
+    localStorage.setItem("users", JSON.stringify(users));
+    localStorage.setItem("loggedInUser", JSON.stringify(user));
+    removeModal();
+  });
 }
 function loginUser(email, password) {
   const users = JSON.parse(localStorage.getItem("users")) || [];
-
   const user = users.find((u) => u.email === email && u.password === password);
 
   if (user) {
+    // activeUser = user;
+    // console.log(activeUser);
     let visitCount = +user.visitCount;
     visitCount++;
     user.visitCount = visitCount;
+    // user.isAuth = true;
     localStorage.setItem("users", JSON.stringify(users));
     localStorage.setItem("loggedInUser", JSON.stringify(user));
+
     showUserInfo(user);
   } else {
     alert("Not find your mail or password. Please try again.");
@@ -263,20 +311,22 @@ function loginUser(email, password) {
 }
 // Function to handle user logout
 function logoutUser() {
+  activeUser = null;
   localStorage.removeItem("loggedInUser");
   document.location.reload();
   showLoginForm();
 }
+
 //Function for open LogIn menu
 function openLogInMenu() {
   modalLogIn.classList.add("modalLogIn_active");
   modalOver.classList.add("modal_active");
 }
+///Function for open modal buy libraryCard
 function openModalBuyCard() {
   modalBuyCard.classList.add("modalBuyCard_active");
   modalOver.classList.add("modal_active");
 }
-///
 
 //Function for closing all section modals - logIn, register, my profile, modalBuyCard
 function removeModal() {
@@ -391,7 +441,9 @@ formRegister.addEventListener("submit", function (e) {
   const password = document.getElementById("new-password_register").value;
   const cardNumber = randomNumTo16(randomNum);
   const books = [];
+  let libraryCardBuy = false;
   let visitCount = 0;
+  // let isAuth = true;
   const users = JSON.parse(localStorage.getItem("users")) || [];
   users.push({
     firstName,
@@ -401,6 +453,8 @@ formRegister.addEventListener("submit", function (e) {
     cardNumber,
     visitCount,
     books,
+    libraryCardBuy,
+    // isAuth,
   });
   localStorage.setItem("users", JSON.stringify(users));
   removeModal();
@@ -418,6 +472,9 @@ modalLogIn.addEventListener("submit", function (e) {
   loginUser(loginEmail, loginPassword);
   removeModal();
 });
+
+//Event listener for croos in modalBuyCard
+modalBuyCardClose.addEventListener("click", removeModal);
 
 // Initial display based on login status
 if (loggedInUser) {

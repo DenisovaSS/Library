@@ -1070,8 +1070,8 @@ footer {
   line-height: 20px; /* 80% */
 }
 .profile_books_rented {
-  height: 45px;
-  width: 95%;
+  height: 85px;
+  width: 90%;
   margin: 30px 0 0 20px;
   color: #000;
   font-family: Inter;
@@ -1080,9 +1080,11 @@ footer {
   line-height: 20px; /* 100% */
   letter-spacing: 2px;
   text-transform: capitalize;
+  /* overflow-x: scroll; */
+  overflow-y: scroll;
 }
 .profile_footer {
-  margin: 40px 0 0 20px;
+  margin: 20px 0 0 20px;
   display: flex;
   align-items: center;
 }
