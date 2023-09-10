@@ -407,7 +407,12 @@ document
     formRegister.classList.add("modalRegister_active");
     modalOver.classList.add("modal_active");
   });
-
+//Event listener for press LogIn in general document
+document
+  .querySelector(".library_register_card_btn")
+  .addEventListener("click", () => {
+    openLogInMenu();
+  });
 //Event listener for press cross in register
 modalRegister_close.addEventListener("click", removeModal);
 //Event listener for press avoid register

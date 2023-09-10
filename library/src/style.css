@@ -118,6 +118,7 @@ a:hover {
   display: flex;
 }
 .container {
+  /* position: relative; */
   max-width: 1440px;
   margin: 0 auto;
 }
@@ -615,6 +616,9 @@ button[disabled]:hover {
   float: right;
   transition: all 200ms ease-in-out;
 }
+.library_card_btn_profile {
+  margin: 10px 0 0 20px;
+}
 .library_register_card_btn:hover,
 .library_register_card_btn_sigh:hover,
 #modalBuyCard_btn:hover,
@@ -718,9 +722,6 @@ footer {
   padding: 5px 3px;
   border: 1px solid black;
   background: #fff;
-}
-.dropMenuProfileNOAuth,
-.dropMenuProfileWITHAuth {
   position: fixed;
   top: -100%;
   right: 19px;
@@ -729,7 +730,7 @@ footer {
 
 .dropMenuProfileNOAuth_active,
 .dropMenuProfileWITHAuth_active {
-  top: 72px;
+  top: 64px;
   z-index: 3;
 }
 .modal_active {
@@ -836,11 +837,11 @@ footer {
 #modalRegister_close,
 .modalLogIn_close {
   position: absolute;
-  width: 20px;
-  height: 20px;
-  top: 7px;
-  right: 15px;
-  font-size: 15px;
+  width: 15px;
+  height: 15px;
+  top: 8px;
+  right: 13px;
+  font-size: 20px;
   font-weight: 900;
 }
 #modalRegister_close:hover,
@@ -931,8 +932,8 @@ footer {
 }
 
 .profile_black {
-  width: 170px;
-  height: 100%;
+  width: 240px;
+  height: 400px;
   background: rgba(12, 12, 14, 1);
   padding-top: 139px;
 }
@@ -978,7 +979,7 @@ footer {
   height: 20px;
   top: 18px;
   right: 18px;
-  font-size: 15px;
+  font-size: 19px;
   font-weight: 900;
 }
 .profile_title {
@@ -1062,7 +1063,7 @@ footer {
   height: 21px;
 }
 .profileRent_title {
-  margin: 20px 0 0 20px;
+  margin: 28px 0 0 20px;
   color: #0c0c0e;
   font-family: Inter;
   font-size: 25px;
@@ -1084,7 +1085,7 @@ footer {
   overflow-y: scroll;
 }
 .profile_footer {
-  margin: 20px 0 0 20px;
+  margin: 8px 0 0 19px;
   display: flex;
   align-items: center;
 }
@@ -1150,7 +1151,7 @@ footer {
   background: #0c0c0e;
 }
 .modalBuyCard_main {
-  padding: 30px 40px;
+  padding: 20px 33px;
   display: flex;
 }
 .modalBuyCard_infoBankCard {
@@ -1202,7 +1203,7 @@ footer {
 }
 .modalBuyCard_price {
   display: inline;
-  margin-left: 10px;
+  margin-left: 22px;
   color: #0c0c0e;
   font-family: Inter;
   font-size: 20px;
@@ -1212,6 +1213,7 @@ footer {
   text-transform: uppercase;
 }
 .modalBuyCard_info {
+  margin-top: 10px;
   margin-left: 40px;
   width: 330px;
   color: #8e8e8e;
@@ -1371,6 +1373,10 @@ footer {
     flex-direction: row-reverse;
     justify-content: center;
   }
+  /* .dropMenuProfileNOAuth,
+  .dropMenuProfileWITHAuth {
+    right: 19px;
+  } */
 }
 @media (max-width: 768px) {
   .welcome {
