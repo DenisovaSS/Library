@@ -156,7 +156,8 @@ function showLoginForm() {
 // Function to show user info
 function showUserInfo(user) {
   //first check which books buy before
-  const users = JSON.parse(localStorage.getItem("users")) || [];
+  //customer.books.length
+  const users = JSON.parse(localStorage.getItem("users_denissova")) || [];
   users.forEach((u) => {
     if (u.email === user.email) {
       for (let i = 0; i < user.books.length; i++) {
@@ -171,6 +172,8 @@ function showUserInfo(user) {
       }
     }
   });
+  // // function for refresh data on the page
+  // refreshData(user);
 
   console.log("its client logIn");
   logo.style.display = "none";
@@ -200,13 +203,13 @@ function showUserInfo(user) {
   profileVisitCount.textContent = user.visitCount;
   profileBooksCount.textContent = user.books.length;
   //add name books for myprofile
-  // profileBooksName.textContent = Object.values(user.books);
   const listBookHTML = user.books
     .map((book) => {
       return `<li class = 'profile_books_titleAutor'>${book.title}, ${book.autor}</li>`;
     })
     .join(" ");
   profileBooksName.innerHTML = listBookHTML;
+  refreshData(user);
   //Event listener for button for copy number profile
   profileCopyBtn.addEventListener("click", function () {
     let area = document.createElement("textarea");
@@ -263,14 +266,15 @@ function showUserInfo(user) {
     const title = btn.getAttribute("data-title");
     const autor = btn.getAttribute("data-autor");
     user.books.push({ title, autor });
-    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const users = JSON.parse(localStorage.getItem("users_denissova")) || [];
     users.forEach((u) => {
       if (u.email === user.email) {
         u.books = user.books;
       }
     });
-    localStorage.setItem("users", JSON.stringify(users));
+    localStorage.setItem("users_denissova", JSON.stringify(users));
     localStorage.setItem("loggedInUser", JSON.stringify(user));
+    refreshData(user);
     btn.textContent = "own";
     btn.disabled = true;
   }
@@ -278,20 +282,20 @@ function showUserInfo(user) {
   modalBuyCard.addEventListener("submit", function (e) {
     e.preventDefault();
     user.libraryCardBuy = true;
-    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const users = JSON.parse(localStorage.getItem("users_denissova")) || [];
     users.forEach((u) => {
       if (u.email === user.email) {
         u.libraryCardBuy = user.libraryCardBuy;
       }
     });
 
-    localStorage.setItem("users", JSON.stringify(users));
+    localStorage.setItem("users_denissova", JSON.stringify(users));
     localStorage.setItem("loggedInUser", JSON.stringify(user));
     removeModal();
   });
 }
 function loginUser(email, password) {
-  const users = JSON.parse(localStorage.getItem("users")) || [];
+  const users = JSON.parse(localStorage.getItem("users_denissova")) || [];
   const user = users.find((u) => u.email === email && u.password === password);
 
   if (user) {
@@ -301,7 +305,7 @@ function loginUser(email, password) {
     visitCount++;
     user.visitCount = visitCount;
     // user.isAuth = true;
-    localStorage.setItem("users", JSON.stringify(users));
+    localStorage.setItem("users_denissova", JSON.stringify(users));
     localStorage.setItem("loggedInUser", JSON.stringify(user));
 
     showUserInfo(user);
@@ -342,6 +346,23 @@ function changeLibraryCard(customer) {
   readerName.value = `${customer.firstName} ${customer.lastName}`;
   readerCardNum.value = customer.cardNumber;
 }
+// function for refresh data on the page
+function refreshData(customer) {
+  const users = JSON.parse(localStorage.getItem("users_denissova")) || [];
+  users.forEach((u) => {
+    if (u.email === customer.email) {
+      const element = document.querySelector(".profile_book_count");
+      element.textContent = u.books.length;
+      profileBooksCount.textContent = u.books.length;
+      const listBookHTML = customer.books
+        .map((book) => {
+          return `<li class = 'profile_books_titleAutor'>${book.title}, ${book.autor}</li>`;
+        })
+        .join(" ");
+      profileBooksName.innerHTML = listBookHTML;
+    }
+  });
+}
 function changeBtnLibraryCard(customer) {
   const newElement = document.createElement("div");
   newElement.innerHTML = `<div class="pfofile_info_libCard">
@@ -372,7 +393,7 @@ function changeVisitYourProfile() {
               <button class="library_card_btn_profile">Profile</button>
             </div>`;
 }
-///
+
 // Event listener for user logo without login
 //click for logo without register
 logo.addEventListener("click", () => {
@@ -449,7 +470,7 @@ formRegister.addEventListener("submit", function (e) {
   let libraryCardBuy = false;
   let visitCount = 0;
   // let isAuth = true;
-  const users = JSON.parse(localStorage.getItem("users")) || [];
+  const users = JSON.parse(localStorage.getItem("users_denissova")) || [];
   users.push({
     firstName,
     lastName,
@@ -461,7 +482,7 @@ formRegister.addEventListener("submit", function (e) {
     libraryCardBuy,
     // isAuth,
   });
-  localStorage.setItem("users", JSON.stringify(users));
+  localStorage.setItem("users_denissova", JSON.stringify(users));
   removeModal();
   // showLoginForm();
   loginUser(email, password);
@@ -480,7 +501,20 @@ modalLogIn.addEventListener("submit", function (e) {
 
 //Event listener for croos in modalBuyCard
 modalBuyCardClose.addEventListener("click", removeModal);
-
+//Event listener for link register in logIn menu
+document
+  .querySelector(".modalLogIn-bottom_link")
+  .addEventListener("click", () => {
+    formRegister.classList.add("modalRegister_active");
+    modalLogIn.classList.remove("modalLogIn_active");
+  });
+//Event listener for link logIN in REGISTER menu modalRegister-bottom_link
+document
+  .querySelector(".modalRegister-bottom_link")
+  .addEventListener("click", () => {
+    formRegister.classList.remove("modalRegister_active");
+    modalLogIn.classList.add("modalLogIn_active");
+  });
 // Initial display based on login status
 if (loggedInUser) {
   showUserInfo(loggedInUser);

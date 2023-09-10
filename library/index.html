@@ -533,10 +533,10 @@
               <input id="modalBuyCard_number"  name="number_card" type="text"  pattern="[0-9,' ']{16,20}"
       title="16-digit number" /></label>
             <legend>Expiration code</legend>
-              <input id="expiration_code1"  name="expiration_code" type="text" pattern="\d{2}" required  />
-              <input id="expiration_code2" name="expiration_code" type="text" pattern="\d{2}" required />
+              <input id="expiration_code1"  name="expiration_code" type="text" pattern="\d{2}" title="please 2 numbers" required  />
+              <input id="expiration_code2" name="expiration_code" type="text" pattern="\d{2}" title="please 2 numbers" required />
             <label for="modalBuyCard_CVC">CVC
-              <input id="modalBuyCard_CVC" type="text" pattern="\d{3}" required  /></label>
+              <input id="modalBuyCard_CVC" type="text" pattern="\d{3}" title="please 3 numbers" required  /></label>
             <label id="CardholderName" for="modalBuyCard_CardholderName">Cardholder name
                <input id="modalBuyCard_CardholderName" type="text" required /></label>
             <label for="modalBuyCard_PostalCode">Postal code
@@ -556,6 +556,6 @@
 </div>
   <script src="src/java.js"></script>
   <!-- <script src="src/isUserLogin.js"></script> -->
-    <!-- <script src="src/index.js"></script> -->
+    <script src="src/index.js"></script>
 </body>
 </html>
