@@ -102,6 +102,7 @@ const ProfilelogInMenuNo = document.querySelector(".dropMenuProfileNOAuth"),
   logo = document.querySelector(".menu_img"),
   logoTablet = document.querySelector(".menu_img_tablet"),
   logoCustomer = document.querySelector(".menu_img_logIn"),
+  logoTabletCustomer = document.querySelector(".icon-profile_letter_tablet"),
   // modalRegister = document.querySelector(".modalRegister"),
   modalOver = document.querySelector(".modal"),
   modalLogIn = document.querySelector(".modalLogIn"),
@@ -115,7 +116,7 @@ let LogOut_link = document.querySelector(".dropMenu_LogOut");
 let logoLogin = document.querySelector(".icon-profile_letter");
 let ProfileLogInMenuWith = document.querySelector(".dropMenuProfileWITHAuth"),
   dropMenu_title = ProfileLogInMenuWith.querySelector(".dropMenu_title"),
-  logoLoginTablet = document.querySelector(".icon-profile_letter_tablet"),
+  // logoLoginTablet = document.querySelector(".icon-profile_letter_tablet"),
   myProfileLink = ProfileLogInMenuWith.querySelector(".dropMenu_MyProfile"),
   modalMyProfile = document.querySelector(".modalProfile"),
   modalProfileClose = document.getElementById("modalProfile_close"),
@@ -143,11 +144,17 @@ function showRegistrationForm() {
   // function buttonEventLogOut() {
   //   openLogInMenu();
   // }
+  logo.style.display = "block";
+  logoTablet.style.display = "block";
+  logoCustomer.style.display = "none";
+  logoTabletCustomer.style.display = "none";
 }
 // Function to show login form
 function showLoginForm() {
   logo.style.display = "block";
+  logoTablet.style.display = "block";
   logoCustomer.style.display = "none";
+  logoTabletCustomer.style.display = "none";
   console.log("its client has registration, but logOut");
   // buttonsForBuy.forEach((btn) => {
   //   btn.addEventListener("click", openLogInMenu);
@@ -172,14 +179,14 @@ function showUserInfo(user) {
       }
     }
   });
-  // // function for refresh data on the page
-  // refreshData(user);
-
   console.log("its client logIn");
+  logoTablet.style.display = "none";
+  logoTabletCustomer.style.display = "block";
   logo.style.display = "none";
   logoCustomer.style.display = "block";
   //change logo
   logoLogin.textContent = user.firstName[0] + user.lastName[0];
+  logoTabletCustomer.textContent = user.firstName[0] + user.lastName[0];
   //change profile for number
   dropMenu_title.textContent = user.cardNumber;
   //change in profile modal: number, logo, firstLastName
@@ -406,10 +413,17 @@ logoTablet.addEventListener("click", () => {
   overNav.classList.add("overNav_active");
   nav.classList.remove("nav_active");
 });
+//and click in burgermenu
+logoTabletCustomer.addEventListener("click", () => {
+  ProfileLogInMenuWith.classList.add("dropMenuProfileWITHAuth_active");
+  overNav.classList.add("overNav_active");
+  nav.classList.remove("nav_active");
+});
 
 // Event listener for dropMenuRemove
 function dropMenuRemove() {
   ProfilelogInMenuNo.classList.remove("dropMenuProfileNOAuth_active");
+  ProfileLogInMenuWith.classList.remove("dropMenuProfileWITHAuth_active");
   overNav.classList.remove("overNav_active");
 }
 overNav.onclick = dropMenuRemove;
