@@ -471,7 +471,7 @@
            <label for="modalLogIn_email" class="modal_label modal_label_first">E-mail or readers card
             <input id="modalLogIn_email" class="modal_input" name="email" type="email" required /></label>
             <label for="modalLogIn_new-password" class="modal_label">Password
-            <input id="modalLogIn_new-password" class="modal_input" name="new-password" type="password" required /></label>        
+            <input id="modalLogIn_new-password" class="modal_input" name="new-password" type="password" pattern="[a-z,0-9]{8,}" required /></label>        
         <input type="submit" value="Log In" class="modalLogIn_btn"/>
         <p class="modalLogIn-bottom">Don’t have an account? <a class="modalLogIn-bottom_link" href="#">Register</a></p>
     </form>
@@ -485,8 +485,8 @@
           <label for="email_register" class="modal_label">E-mail
             <input id="email_register" name="email" type="email" class="modal_input"  required /></label>
           <label for="new-password_register" class="modal_label">Password
-            <input id="new-password_register" name="new-password" type="password" class="modal_input" title="no less 8" pattern="[a-z,0-5]{8,}" required /></label>
-            <!-- pattern="[a-z,0-5]{8,}" -->
+            <input id="new-password_register" name="new-password" type="password" class="modal_input" title="no less 8" pattern="[a-z,0-9]{8,}" required /></label>
+            <!-- pattern="[a-z,0-9]{8,}" -->
         <input type="submit" value="Sign Up" class="modalRegister_btn" />
         <p class="modalRegister-bottom">Already have an account?<a class="modalRegister-bottom_link" href="#">Login</a></p>      
     </form>
